@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+body{
+	font-family: 'Poppins', sans-serif;
+	padding-top: 3.5rem;
+}
+
+footer{
+	background-color:#1f1a1a;
+	padding: 60px 0px;
+}
+
+footer .menu li a{
+	color:#b1aca1;
+	padding:10px;
+	text-decoration:none;
+}
+
+footer .menu li a:hover{
+	color:#7dabdb;
+}
+
+.pricing-header {
+	max-width: 700px;
+  }
+  
+  .card-deck .card {
+	min-width: 220px;
+  }
+
+

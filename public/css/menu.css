@@ -1,0 +1,44 @@
+#Mymenu{
+    background-color: #313A3D;
+    color: white;
+    position: relative;
+    margin-top: 0 !important;
+    
+}
+#Mymenu h3{
+    font-size: 60px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+#Mymenu h4{
+    text-align: center;
+}
+#Mymenu h5{
+    font-size: 30px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#Mymenu p{
+    text-align: center;
+}
+#cormenu{
+    color: #FFFFFF;
+    font-size: 18px;
+}
+.dropdown:hover>.dropdown-menu {
+     display: block;
+}
+#Mymenu button{
+    color: #313A3D;
+    float: right;
+}
+.ul.list-group{
+    color:ghostwhite;
+    
+}
+#ser{
+ margin-top: 150px;
+}

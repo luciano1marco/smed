@@ -1,0 +1,46 @@
+.meiogeral {
+    background-color: #313A3D;
+    
+}
+
+#sociais{
+    background-color: #313A3D;
+    text-align: right;
+}
+#sociais ul li a {
+    background-color: #313A3D;
+}
+.fa.fa-facebook
+ {
+    color: #516EAE;
+    font-size: 30px;
+    padding: 10px;
+}
+.fa.fa-facebook:hover
+{
+    color: #fafafa;
+}
+.fa.fa-twitter {
+    color: #5CC1E8;
+    font-size: 20px;
+    padding: 10px;
+}
+.fa.fa-twitter:hover {
+    color: #fafafa;
+}
+.fa.fa-instagram {
+    color: #DCABC4;
+    font-size: 20px;
+    padding: 10px;
+}
+.fa.fa-instagram:hover {
+    color: #fafafa;
+}
+.fa.fa-youtube {
+    color: #FF0100;
+    font-size: 20px;
+    padding: 10px;
+}
+.fa.fa-youtube:hover {
+    color: #fafafa;
+}
