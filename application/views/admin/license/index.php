@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <div class="col-xs-12">
                             <a href="invoice-print.html" target="_blank" class="btn btn-default"><i class="fa fa-print"></i> Print</a>
                             <button class="btn btn-success pull-right"><i class="fa fa-credit-card"></i> Submit Payment</button>
-                            <button class="btn btn-orange pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
+                            <button class="btn btn-azul pull-right" style="margin-right: 5px;"><i class="fa fa-download"></i> Generate PDF</button>
                         </div>
                     </div>
 

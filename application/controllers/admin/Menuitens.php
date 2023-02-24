@@ -128,7 +128,7 @@ class Menuitens extends Admin_Controller {
 				'data-live-search' 	=> TRUE,						
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
-				'data-style' 		=> 'btn-orange'					
+				'data-style' 		=> 'btn-azul'					
 			);	
 			
 			$this->data['section'] = array(
@@ -236,7 +236,7 @@ class Menuitens extends Admin_Controller {
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
 				'value' 			=> $this->form_validation->set_value('icone', $menuitem->icone),
-				'data-style' 		=> 'btn-orange'					
+				'data-style' 		=> 'btn-azul'					
 			);	
 
 			$this->data['section'] = array(

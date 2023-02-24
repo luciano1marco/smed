@@ -39,7 +39,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         $cancel = '<i class="fa fa-times"></i> <span>   Cancelar</span>';                                                  
                         ?>
                         
-                        <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-orange btn-flat', 'content' => $submit)); ?>
+                        <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
                            
                         <?php echo anchor($anchor.'/auth/login/', $cancel, array('class' => 'btn btn-default btn-flat')); ?>                            
                     </div>

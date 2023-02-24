@@ -24,7 +24,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <?php echo form_label('', 'arquivo', array('class' => 'col-sm-2 control-label')); ?>  
                             <div class="col-sm-4"> 
                             <!--<input type="file" name="arquivo[]" multiple /> -->
-                            <button type="button" class="btn btn-orange" data-toggle="modal" data-target="#modalImagem">
+                            <button type="button" class="btn btn-azul" data-toggle="modal" data-target="#modalImagem">
                                 Anexar Arquivo
                             </button>   
                             </div>
@@ -66,7 +66,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                        <input type="submit" class="btn btn-orange" value="Enviar" />
+                        <input type="submit" class="btn btn-azul" value="Enviar" />
                     </div>
                 </div>
             </div>

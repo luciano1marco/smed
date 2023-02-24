@@ -64,7 +64,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         ?>
 
             <div class="row text-center m-b-lg">               
-                <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-orange btn-flat btn-lg float-right', 'content' => $submit)); ?>                            
+                <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat btn-lg float-right', 'content' => $submit)); ?>                            
             </div>
 
         </div>    

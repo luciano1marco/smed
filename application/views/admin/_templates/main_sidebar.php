@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <ul class="sidebar-menu">
                         <li>
                             <a href="<?php echo site_url('/'); ?>">
-                                <i class="fa fa-home text-orange"></i> <span><?php echo lang('menu_access_website'); ?></span>
+                                <i class="fa fa-home text-azul"></i> <span><?php echo lang('menu_access_website'); ?></span>
                             </a>
                         </li>
 

@@ -17,7 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="col-md-12">
 				<div class="box">
 					<div class="box-header with-border">
-						<div class="panel panel-orange">
+						<div class="panel panel-azul">
 							<div class="panel-heading">
 								<h3 align="center">Relacionar Cargo</h3>
 
@@ -26,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Criar', array('class' => 'btn btn-block btn-orange btn-flat')); ?></h3>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Criar', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 					</div>
 					<div class="box-body">
 
@@ -69,7 +69,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 										<!-- Opções -->
 										<td>
-											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-orange\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
+											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
 										</td>
 
 									</tr>

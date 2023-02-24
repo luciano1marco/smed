@@ -57,7 +57,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         </div>
                         <div class="form-group">
                             <?php echo form_label('Data de Nascimento', 'nome', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
+                            <div class="col-sm-2">
                                 <?php echo form_input($data_nasc); ?>
                             </div>
                         </div>
@@ -74,7 +74,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';
                                     ?>
 
-                                    <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-success btn-flat', 'content' => $submit)); ?>
+                                    <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
                                     <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     <?php echo form_button(array('type' => 'reset', 'class' => 'btn btn-warning btn-flat', 'content' => $redo)); ?>
                                     

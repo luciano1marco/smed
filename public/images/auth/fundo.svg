@@ -33,7 +33,7 @@
      shape-rendering="auto"
      inkscape:zoom="0.49008412"
      inkscape:cx="1122.2563"
-     inkscape:cy="758.03313"
+     inkscape:cy="594.79584"
      inkscape:window-width="1920"
      inkscape:window-height="991"
      inkscape:window-x="-9"
@@ -123,7 +123,7 @@
        x="-67.18766"
        y="-70.241638" />
     <g
-       transform="matrix(0.10251434,3.0167068e-4,-2.2066113e-4,0.08955693,-43.366814,-32.66562)"
+       transform="matrix(0.10251434,3.0167068e-4,-2.2066113e-4,0.08955693,-44.446561,36.438162)"
        id="g7777"
        inkscape:label="brasão novo"
        style="display:inline;stroke-width:1.16746">
@@ -3109,27 +3109,27 @@
     </g>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:22.1789px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#1f2d3d;fill-opacity:0.564706;stroke:#040003;stroke-width:1.78786"
-       x="65.002884"
-       y="52.099148"
+       style="font-weight:bold;font-size:25.18px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#1f2d3d;fill-opacity:0.564706;stroke:#040003;stroke-width:2.02978"
+       x="74.960495"
+       y="47.256054"
        id="text8532"
-       transform="scale(0.76450326,1.3080389)"><tspan
+       transform="scale(0.67725766,1.4765429)"><tspan
          sodipodi:role="line"
          id="tspan8530"
-         style="stroke:none;stroke-width:1.78786"
-         x="65.002884"
-         y="52.099148">Prefeitura Municipal do Rio Grande</tspan></text>
+         style="stroke:none;stroke-width:2.02978"
+         x="74.960495"
+         y="47.256054">Prefeitura Municipal do Rio Grande</tspan></text>
     <text
        xml:space="preserve"
-       style="font-weight:bold;font-size:24.1303px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#1f2d3d;fill-opacity:0.564706;stroke:#040003;stroke-width:1.94514"
-       x="73.44593"
-       y="72.809975"
+       style="font-weight:bold;font-size:25.6718px;font-family:Arial;-inkscape-font-specification:'Arial Bold';fill:#1f2d3d;fill-opacity:0.564706;stroke:#040003;stroke-width:2.0694"
+       x="68.927818"
+       y="77.461128"
        id="text8536"
-       transform="scale(0.65200543,1.5337296)"><tspan
+       transform="scale(0.69365599,1.4416368)"><tspan
          sodipodi:role="line"
          id="tspan8534"
-         style="stroke:none;stroke-width:1.94514"
-         x="73.44593"
-         y="72.809975">Secretaria Municipal da Causa Animal </tspan></text>
+         style="stroke:none;stroke-width:2.0694"
+         x="68.927818"
+         y="77.461128">Secretaria Municipal de Educação </tspan></text>
   </g>
 </svg>

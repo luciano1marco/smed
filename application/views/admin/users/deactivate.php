@@ -16,7 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="box">
                     
                     <div class="box-header with-border">
-                        <h3 class="box-title"><?php echo sprintf(lang('users_deactivate_question'), '<span class="label label-orange">'.$firstname.$lastname).'</span>';?></h3>
+                        <h3 class="box-title"><?php echo sprintf(lang('users_deactivate_question'), '<span class="label label-azul">'.$firstname.$lastname).'</span>';?></h3>
                     </div>
 
                     <div class="box-body">
@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                         $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';                                                  
                                     ?>
 
-                                    <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-orange btn-flat', 'content' => $submit)); ?>                                       
+                                    <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>                                       
                                     <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     
                                 </div>

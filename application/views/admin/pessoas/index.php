@@ -19,14 +19,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div class="col-md-12">
 				<div class="box">
 					<div class="box-header with-border">
-						<div class="panel panel-orange">
+						<div class="panel panel-azul">
 							<div class="panel-heading">
 								<h3 align="center">Sócios</h3>
 							</div>
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Criar Sócio', array('class' => 'btn btn-block btn-orange btn-flat')); ?></h3>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Criar Sócio', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 					</div>
 					<div class="box-body">
 
@@ -64,8 +64,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 									<!-- Opções -->                                            
 									<td>
-										<?php echo anchor($anchor.'/edit/'.$i['id'], "<button class=\"btn btn-orange\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>&nbsp;&nbsp;&nbsp;&nbsp;
-										<?php echo anchor($anchor1.'/index/'.$i['id'], "<button class=\"btn btn-orange\"><i class=\"fa fa-pencil\"></i> Ver</button>"); ?>
+										<?php echo anchor($anchor.'/edit/'.$i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+										<?php echo anchor($anchor1.'/index/'.$i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Ver</button>"); ?>
 								
 									</td>
 								</tr>

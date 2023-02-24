@@ -42,7 +42,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<h3 align="center">Agendamento</h3>
 							</div>
                             <div class="box-header with-border">
-						        <h3 class="box-title"><?php echo anchor('/admin/calendar/create', '<i class="fa fa-plus"></i> ' . $texto_btn_create, array('class' => 'btn btn-block btn-orange btn-flat')); ?></h3>
+						        <h3 class="box-title"><?php echo anchor('/admin/calendar/create', '<i class="fa fa-plus"></i> ' . $texto_btn_create, array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 							</div>
 							<tbody>
 								<div id='script-warning'>
@@ -84,7 +84,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							</div>
 						
 							<div class="col-sm-4">
-								<?php echo anchor( '/admin/pacientes/create', '<i class="fa fa-plus"></i> ' . 'Adicionar Paciente', array('class' => 'btn btn-block btn-orange btn-flat')); ?>
+								<?php echo anchor( '/admin/pacientes/create', '<i class="fa fa-plus"></i> ' . 'Adicionar Paciente', array('class' => 'btn btn-block btn-azul btn-flat')); ?>
 							</div>
 						</div>
 						
@@ -133,7 +133,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<!--<a  href="javascript::void" class="btn btn-secondary" data-dismiss="modal">Cancel</a>
 								<a class="btn btn-danger delete_calendar" style="display: none;">Delete</a>
 							-->
-							<button type="submit" class="btn btn-orange">Enviar</button>
+							<button type="submit" class="btn btn-azul">Enviar</button>
 							<button type="reset" class="btn btn-light">Limpar</button> 
 							
 						</div>
@@ -184,7 +184,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="botao" class="btn btn-orange" data-dismiss="modal">Ok</button>
+                    <button type="button" id="botao" class="btn btn-azul" data-dismiss="modal">Ok</button>
 					<button type="button"  id="bapaga" class="btn btn-default" onclick= apagar() data-dismiss="modal">Apagar</button>
                 
                 </div>
