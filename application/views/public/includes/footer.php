@@ -251,8 +251,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         });
 
         $('.icheck').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
+            checkboxClass: 'icheckbox_square-azul',
+            radioClass: 'iradio_square-azul',
             increaseArea: '40%' // optional
         });
 

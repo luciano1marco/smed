@@ -74,9 +74,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									?>
 									<tr>
 										<td><?php echo $i->nome; ?></td>
+										<td><?php echo $i->cpf; ?></td>
 										<td><?php echo $i->email; ?></td>
 										<td><?php echo $i->telefone; ?></td>
-										<td><?php echo $i->cpf; ?></td>
 										<td><?php echo $i->endereco; ?></td>
 										<td><?php echo $i->data_nasc; ?></td>
 										

@@ -74,6 +74,22 @@ class professores extends Admin_Controller {
             
 			R::store($resp);
 
+		//---envio de email--------
+				
+		$this->load->library('email');
+
+		$this->email->from('luciano.correa@riogrande.rs.gov.br', 'Administrador SMED');
+		$this->email->to($resp->email);
+		//$this->email->cc('another@another-example.com');
+		//$this->email->bcc('them@their-example.com');
+
+		$this->email->subject('Cadastro SMED');
+		$this->email->message('teste envio de email');
+
+		$this->email->send();
+
+
+
 			$this->session->set_flashdata('message', "Dados gravados");
             redirect('admin/professores', 'refresh');
 		} 

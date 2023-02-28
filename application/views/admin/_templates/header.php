@@ -54,7 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/adminlte/css/skins/skin-azul.min.css'); ?>">
         
         <!-- ICHECK e LIGHT BOX -->
-        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/icheck/skins/square/azul.css'); ?>">
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/icheck/skins/square/blue.css'); ?>">
         <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/lightbox2/css/lightbox.min.css'); ?>">
         
         <!--select2 --->

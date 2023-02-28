@@ -83,18 +83,18 @@ class Menuitens extends Admin_Controller {
 
 			if ($grupos != null && $idMenu != null) {
 				foreach ($grupos as $g) {
-					try{
+					//try{
 						$mg = R::dispense("menugroups");
 						$mg->grupo = $g;
 						$mg->menu = $idMenu;
 						R::store($mg);
 
 						$this->session->set_flashdata('message', 'Item de Menu criado');
-					}
-					catch(Exception $e) {
-						R::rollback();
-						$this->session->set_flashdata('message', 'Não foi possível adicionar Item');
-					}          		
+				//	}
+				//	catch(Exception $e) {
+				//		R::rollback();
+				//		$this->session->set_flashdata('message', 'Não foi possível adicionar Item');
+				//	}          		
 				}
 			}
 			
@@ -128,7 +128,7 @@ class Menuitens extends Admin_Controller {
 				'data-live-search' 	=> TRUE,						
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
-				'data-style' 		=> 'btn-azul'					
+				'data-style' 		=> 'btn-primary'					
 			);	
 			
 			$this->data['section'] = array(
@@ -236,7 +236,7 @@ class Menuitens extends Admin_Controller {
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
 				'value' 			=> $this->form_validation->set_value('icone', $menuitem->icone),
-				'data-style' 		=> 'btn-azul'					
+				'data-style' 		=> 'btn-primary'					
 			);	
 
 			$this->data['section'] = array(

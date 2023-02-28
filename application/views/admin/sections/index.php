@@ -11,19 +11,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</section>
 
 	<div style="margin-top: 8px" id="alert_message">
-	<?php
-	if($this->session->userdata("message") != null)
-	{
-	?>
-		<div class="alert alert-info alert-dismissable" role="alert">
-			<?php echo $this->session->userdata("message"); ?> 
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	<?php
-	}
-	?>
+		<?php if($this->session->userdata("message") != null)	{ ?>
+			<div class="alert alert-info alert-dismissable" role="alert">
+				<?php echo $this->session->userdata("message"); ?> 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		<?php } ?>
 	</div>
 
 	<section class="content">

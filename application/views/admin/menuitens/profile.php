@@ -67,7 +67,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					$delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';
 					?>
 					
-					<?php echo anchor($anchor.'/edit/'.$menuitens['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
+					<?php echo anchor($anchor.'/edit/'.$menuitens['id'], "<button class=\"btn btn-primary\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
 					&nbsp;					
 					<?php echo form_button(array('type' => 'button', 'class' => 'btn btn-danger btn-flat', 'content' => $delete, "id" => "btExcluir")); ?>
 					</div>
