@@ -21,6 +21,11 @@
       </p>
 
       <p>
+            <?php echo lang('edit_user_escola_label', 'escola');?> <br />
+            <?php echo form_input($escola);?>
+      </p>
+
+      <p>
             <?php echo lang('edit_user_phone_label', 'phone');?> <br />
             <?php echo form_input($phone);?>
       </p>

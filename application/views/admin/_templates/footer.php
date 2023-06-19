@@ -1,10 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
-
 ?>
-
 </div>
-
+<!--<footer class="main-footer d-print-none">
+            <div class="float-right d-none d-sm-block">
+            <b>Version</b> 1.1
+            </div>
+            <strong>Prefeitura Municipal do Rio Grande &copy; 2023 <a href="http://riogrande.rs.gov.br">Setor de Desenvolvimento</a>.</strong> All rights reserved.
+ </footer>
+---->
 <!-- BASICO ADMINLTE -->
 <script src="<?php echo base_url($frameworks_dir . '/jquery/jquery.min.js'); ?>"></script>
 <script src="<?php echo base_url($frameworks_dir . '/bootstrap/js/bootstrap.min.js'); ?>"></script>
@@ -121,7 +125,14 @@ $include_datepicker = isset($includes['datepicker']) ? $includes['datepicker'] :
     <script src="<?php echo base_url('public/javascript/admin/users/user_timepicker.js'); ?>"></script>
 
 <?php endif; ?>
-
+        <!-- Datatables BS4 -->
+        <script src="<?php echo base_url($frameworks_dir . '/datatables-bs4/js/dataTables.bootstrap4.min.js'); ?>"></script> 
+         <!-- Datatables Responsive -->
+        <script src="<?php echo base_url($frameworks_dir . '/datatables-responsive/js/dataTables.responsive.min.js'); ?>"></script>
+        <script src="<?php echo base_url($frameworks_dir . '/datatables-responsive/js/responsive.bootstrap4.min.js'); ?>"></script>             
+        <!-- Select Picker -->        
+        <script src="<?php echo base_url($frameworks_dir . '/bootstrap_select/bootstrap-select.min.js'); ?>"></script>
+       
 <!--  CYCLE2 -->
 <?php
 $cycle2_array = array('');

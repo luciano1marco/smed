@@ -21,6 +21,11 @@
       </p>
 
       <p>
+            <?php echo lang('create_user_escola_label', 'escola');?> <br />
+            <?php echo form_input($escola);?>
+      </p>
+
+      <p>
             <?php echo lang('create_user_email_label', 'email');?> <br />
             <?php echo form_input($email);?>
       </p>

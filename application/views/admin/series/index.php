@@ -19,14 +19,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="box-header with-border">
 						<div class="panel panel-azul">
 							<div class="panel-heading">
-								<h3 align="center" style="color:black">Séries</h3>
+								<h3 align="center" style="color:black">Séries - Anos/Niveis</h3>
 
 							</div>
 						</div>
 
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Adicionar Série', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Nova Séries', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 					</div>
 					<div class="box-body">
 
@@ -34,7 +34,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<thead>
 								<tr>
 									<!--<th>ID</th>-->
-									<th>Descrição</th>
+									<th>Nome</th>
+												
 									<th>Ação</th>
 								</tr>
 							</thead>
@@ -44,9 +45,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<?php foreach ($series as $i) : ?>
 									<tr>
 
-										<td><?php echo htmlspecialchars($i['descricao'], ENT_QUOTES, 'UTF-8'); ?></td>
-										
-										<!-- Opções -->
+										<td><?php echo htmlspecialchars($i['nome'], ENT_QUOTES, 'UTF-8'); ?></td>
+											<!-- Opções -->
 										<td>
 											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
 										</td>

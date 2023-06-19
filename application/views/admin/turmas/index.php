@@ -26,7 +26,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Adicionar Turma', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Turma', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 					</div>
 					<div class="box-body">
 
@@ -35,6 +35,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<tr>
 									<!--<th>ID</th>-->
 									<th>Descrição</th>
+																	
 									<th>Ação</th>
 								</tr>
 							</thead>

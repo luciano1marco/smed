@@ -10,4 +10,12 @@ $("#btExcluirConfirmar").bind("click", function (event) {
     }
 });
 
+//delete serie da escola----
+$("#btExcluirserie").bind("click", function(event) {
+    if ($("#base_url").val() != undefined &&
+        $("#controlador").val() != undefined &&
+        $("input[name = id]")[0].value != undefined) {
+        window.location.href = ($("#base_url").val() + "admin/" + $("#controlador").val() + "/apagarserie/" + $("input[name = id]")[0].value);
+    }
+});
 

@@ -102,7 +102,7 @@ class Users extends Admin_Controller {
 			$this->data['email'] = array(
 				'name'  => 'email',
 				'id'    => 'email',
-				'type'  => 'email',
+				'type'  => 'text',
 				'class' => 'form-control',
 				'value' => $this->form_validation->set_value('email'),
 			);
@@ -272,7 +272,7 @@ class Users extends Admin_Controller {
 			'id'    => 'company',
 			'type'  => 'text',
 			'class' => 'form-control',
-			'value' => $this->form_validation->set_value('company', $user->company)
+			'value' => $this->form_validation->set_value('phone', $user->company)
 		);
 		$this->data['phone'] = array(
 			'name'  => 'phone',
@@ -402,9 +402,17 @@ class Users extends Admin_Controller {
 
 		$this->data['user_info'] = $this->ion_auth->user($id)->result();
 		foreach ($this->data['user_info'] as $k => $user)
-		{
-			$this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
-		}
+			{
+				$this->data['user_info'][$k]->groups = $this->ion_auth->get_users_groups($user->id)->result();
+			}
+		
+				//$sql ="SELECT e.nome as nome FROM users as u
+				//inner join escolas as e
+				//on e.id = u.company
+				
+				//where u.id = ".$id;	
+				//$this->data['compa']= R::getAll($sql); 
+
 
 		/* Load Template */
 		$this->template->admin_render('admin/users/profile', $this->data);
@@ -433,4 +441,12 @@ class Users extends Admin_Controller {
 			return FALSE;
 		}
 	}
+
+	/*private function getescola() {
+		$teste = R::findAll("escolas");
+		foreach ($teste as $o) {
+			$op[$o->id] = $o->nome;
+		}
+		return $op;
+	}*/
 }

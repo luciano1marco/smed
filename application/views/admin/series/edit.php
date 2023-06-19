@@ -24,14 +24,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <?php echo form_hidden($id); ?>
 
                         <?php echo form_fieldset('Dados'); ?>
-
+                        <!---Inicio campos  --->
                         <div class="form-group">
-                            <?php echo form_label('Descrição', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
+                            <?php echo form_label('Nome', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-6">
-                            <?php echo form_input($descricao); ?>
+                            <?php echo form_input($nome); ?>
                             </div>
                         </div>
-                     
+                       
+                        <!--fim campos---->
+                        
                         <?php echo form_fieldset_close(); ?>
                         
                         <div class="form-group">

@@ -49,8 +49,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<thead>
 								<tr>
 									<!--<th>ID</th>-->
-									<th><?php echo lang('users_firstname'); ?></th>
-									<th><?php echo lang('users_lastname'); ?></th>
+									<th>Nome</th>
 									<th><?php echo lang('users_email'); ?></th>
 									<th><?php echo lang('users_groups'); ?></th>
 									<th><?php echo lang('users_status'); ?></th>
@@ -62,8 +61,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<?php foreach ($users as $user) : ?>
 									<tr>
 										<?php
-										$first_name = htmlspecialchars($user->first_name, ENT_QUOTES, 'UTF-8');
-										$last_name = htmlspecialchars($user->last_name, ENT_QUOTES, 'UTF-8');
+										$nome = htmlspecialchars($user->first_name." ". $user->last_name, ENT_QUOTES, 'UTF-8');
+										
+										
+										//$escola = htmlspecialchars($user->escola, ENT_QUOTES, 'UTF-8');
 										$email = htmlspecialchars($user->email, ENT_QUOTES, 'UTF-8');
 
 										$data = array(
@@ -75,11 +76,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											'style'         => 'margin:10px'
 										);
 										?>
-										<!--<td><?php echo $first_name; ?></td>-->
+										<!--<td><?php echo $nome; ?></td>-->
 										<!--<td><?php echo form_checkbox($data); ?></td>-->
 
-										<td><?php echo anchor($anchor . '/profile/' . $user->id, $first_name); ?></td>
-										<td><?php echo $last_name; ?></td>
+										<td><?php echo anchor($anchor . '/profile/' . $user->id, $nome); ?></td>
+										
 										<td><?php echo $email; ?></td>
 
 										<td>

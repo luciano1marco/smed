@@ -67,7 +67,7 @@ class Menuitens extends Admin_Controller {
 		/* Validate form input */
 		$this->form_validation->set_rules('descricao', 'Descrição', 'required');
 		$this->form_validation->set_rules('controller', 'Controlador', 'required');
-		$this->form_validation->set_rules('icone', 'Ícone', 'required');
+		//$this->form_validation->set_rules('icone', 'Ícone', 'required');
 
 		if ($this->form_validation->run() == TRUE) {
 			$menuitem = R::dispense("menuitens");
@@ -123,22 +123,23 @@ class Menuitens extends Admin_Controller {
 				'name'  			=> 'icone',
 				'id'    			=> 'icone',
 				'options'  			=> 'null',
-				'class' 			=> 'form-control selectpicker show-tick',
+				'class' 			=> 'form-control selectpicker show-tick icone',
 				'value' 			=> $this->form_validation->set_value('icone'),
 				'data-live-search' 	=> TRUE,						
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
 				'data-style' 		=> 'btn-primary'					
-			);	
-			
-			$this->data['section'] = array(
-				'name'  => 'section',
-				'id'    => 'section',
-				'class' => 'form-control',
-				'options' => $this->getSections(),
-				'selected' => $this->form_validation->set_value('section'),
 			);
 
+			$this->data['section'] = array(
+				'name'  			=> 'section',
+				'id'    			=> 'section',
+				'class' 			=> 'form-control selectpicker show-tick section',
+				'options' 			=> $this->getSections(),
+				'selected' 			=> $this->form_validation->set_value('section'),
+				'data-style' 		=> 'btn-primary'	
+			);
+			
 			$this->data['publicado'] = array(
 				'name' 	=> 'publicado',
 				'id'    => 'publicado',
@@ -230,21 +231,21 @@ class Menuitens extends Admin_Controller {
 				'name'  			=> 'icone',
 				'id'    			=> 'icone',
 				'options'  			=> 'null',
-				'class' 			=> 'form-control selectpicker show-tick',
-				'selected' 			=> $this->form_validation->set_value('icone',$menuitem->icone),
+				'class' 			=> 'form-control selectpicker show-tick icone',
+				'selected' 			=> $this->form_validation->set_value('icone', $menuitem->icone),
 				'data-live-search' 	=> TRUE,						
 				'title' 			=> 'Escolha um Ícone',
 				'options'			=> $this->fa_icons,
-				'value' 			=> $this->form_validation->set_value('icone', $menuitem->icone),
 				'data-style' 		=> 'btn-primary'					
 			);	
-
+			
 			$this->data['section'] = array(
-				'name'  => 'section',
-				'id'    => 'section',
-				'class' => 'form-control',
-				'options' => $this->getSections(),
-				'selected' => $this->form_validation->set_value('section', $menuitem->section),
+				'name'  			=> 'section',
+				'id'    			=> 'section',
+				'class' 			=> 'form-control selectpicker show-tick section',
+				'options' 			=> $this->getSections(),
+				'selected' 			=> $this->form_validation->set_value('section', $menuitem->section),
+				'data-style' 		=> 'btn-primary'	
 			);
 
 			$this->data['publicado'] = array(

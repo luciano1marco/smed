@@ -42,7 +42,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                     <?php echo form_input($company);?>
                                 </div>
                             </div>
-
+                          
                             <div class="form-group">
                                 <?php echo lang('users_email', 'email', array('class' => 'col-sm-2 control-label')); ?>
                                 <div class="col-sm-10">

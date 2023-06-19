@@ -58,6 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									<th><?php echo lang('users_company'); ?></th>
 									<td><?php echo htmlspecialchars($user->company, ENT_QUOTES, 'UTF-8'); ?></td>
 								</tr>
+																
 								<tr>
 									<th><?php echo lang('users_phone'); ?></th>
 									<td><?php echo $user->phone; ?></td>

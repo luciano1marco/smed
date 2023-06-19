@@ -37,21 +37,21 @@ class turmas extends Admin_Controller {
 	}
     public function create() {
 		/* Breadcrumbs */
-		$this->breadcrumbs->unshift(2, "Nova Turma", 'admin/turmas/create');
+		$this->breadcrumbs->unshift(2, "turmas", 'admin/turmas/create');
 		$this->data['breadcrumb'] = $this->breadcrumbs->show();
 
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
         /* Nome do Botão Criar do INDEX */
-        $this->data['texto_create'] = 'Adicionar Turma';
+        $this->data['texto_create'] = 'Turmas';
 		/* Validate form input */
 		$this->form_validation->set_rules('descricao', 'descricao', 'required');
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
 			$resp = R::dispense("turmas");
-			$resp->descricao = strtoupper($this->input->post('descricao'));
-                        
+			$resp->descricao  = strtoupper($this->input->post('descricao'));
+                                
 			R::store($resp);
 
 			$this->session->set_flashdata('message', "Dados gravados");
@@ -67,6 +67,7 @@ class turmas extends Admin_Controller {
                             'class' => 'form-control',
                             'value' => $this->form_validation->set_value('descricao'),
                         );
+                       
                     }
                     
 			/* Load Template */
@@ -96,19 +97,21 @@ class turmas extends Admin_Controller {
             $this->data['id'] =$id;
 
             /* Breadcrumbs */
-            $this->breadcrumbs->unshift(2, "Editar Série", 'admin/turmas/edit');
+            $this->breadcrumbs->unshift(2, "turmas", 'admin/turmas/edit');
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
            
             $tables = $this->config->item('tables', 'ion_auth');
             /* Nome do Botão Criar do INDEX */
-            $this->data['texto_edit'] = 'Editar Turma';
+            $this->data['texto_edit'] = 'turmas';
             /* Validate form input */
             $this->form_validation->set_rules('descricao', 'descricao', 'required');
             
             $resp = R::load("turmas", $id);
 
             if ($this->form_validation->run()) {
-                $resp->descricao = strtoupper($this->input->post('descricao'));
+                $resp->descricao  = strtoupper($this->input->post('descricao'));
+               
+
                 R::store($resp);
 
                 redirect('admin/turmas', 'refresh');
@@ -118,13 +121,14 @@ class turmas extends Admin_Controller {
 
                 $this->data['t_id'] = array('id' => $resp->id);
                 
-                $this->data['descricao'] = array(
-                    'name'  => 'descricao',
-                    'id'    => 'descricao',
-                    'type'  => 'text',
-                    'class' => 'form-control',
-                    'value' => $resp->descricao
+                    $this->data['descricao'] = array(
+                        'name'  => 'descricao',
+                        'id'    => 'descricao',
+                        'type'  => 'text',
+                        'class' => 'form-control',
+                        'value' => $resp->descricao,
                     );
+                   
                   }
 
                 /* Load Template */

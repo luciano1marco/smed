@@ -13,6 +13,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $lang['users_action']              = 'Action';
 $lang['users_active']              = 'Active';
 $lang['users_company']             = 'Company';
+//$lang['users_escola']             = 'Escola';
 $lang['users_create_user']         = 'Create user';
 $lang['users_created_on']          = 'Created on';
 $lang['users_deactivate_question'] = 'Are you sure you want to deactivate the user %s';
