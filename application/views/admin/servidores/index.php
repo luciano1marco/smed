@@ -15,7 +15,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="box-header with-border">
 						<div class="panel panel-azul">
 							<div class="panel-heading">
-								<h3 align="center" style="color:black">Lista de Servidores</h3>
+								<h3 align="center" style="color:black">Lista de Servidores da Escola</h3>
 							</div>
 						</div>
 					</div>
@@ -28,7 +28,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<tr>
 									<!--<th>ID</th>-->
 									<th>Nome</th>
-									<th>Matricula</th>
 									<th>Telefone</th>
 									<th>Email</th>
 									<th>Ação</th>
@@ -38,7 +37,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<?php foreach ($servidor as $i) : ?>
 									<tr>
 										<td><?php echo htmlspecialchars($i['nome'], ENT_QUOTES, 'UTF-8'); ?></td>
-										<td><?php echo htmlspecialchars($i['matricula'], ENT_QUOTES, 'UTF-8'); ?></td>
 										<td><?php echo htmlspecialchars($i['telefone'], ENT_QUOTES, 'UTF-8'); ?></td>
 										<td><?php echo htmlspecialchars($i['email'], ENT_QUOTES, 'UTF-8'); ?></td>
 										<!-- Opções -->

@@ -6,7 +6,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php echo $pagetitle; ?>
 		<?php echo $breadcrumb; ?>
 		<?php $anchor = 'admin/' . $this->router->class; ?>
-		<?php $anchor1 = 'admin/escolas_estrutura' ?>
+		<?php $anchor1 = 'admin/servidores' ?>
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
@@ -38,8 +38,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										<td><?php echo htmlspecialchars($i['nome'], ENT_QUOTES, 'UTF-8'); ?></td>
 										<!-- Opções -->
 										<td>
-											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor . '/view/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Visualizar</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar Escola</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor . '/view/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Dados Escola</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor1 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Servidores</button>"); ?>&nbsp;&nbsp;
 										</td>
 									</tr>
 								<?php endforeach; ?>

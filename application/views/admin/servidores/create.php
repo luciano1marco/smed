@@ -26,14 +26,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <!--campos -->
                                                
                         <div class="form-group">
-                            <?php echo form_label('Nome da Escola', 'nome', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-2">
-                                <?php echo form_dropdown($idescola); ?>
-                            </div>
-                            <?php echo form_label('Número da Matrícula', 'nome', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-1">
-                                <?php echo form_input($matricula); ?>
-                            </div>
                             <?php echo form_label('CPF', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-2">
                                 <?php echo form_input($cpf); ?>
@@ -52,7 +44,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <div class="form-group">   
                             <?php echo form_label('Cidade de Residencia', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-2">
-                                <?php echo form_dropdown($cidade_residencia); ?>
+                                <?php echo form_dropdown($cidade); ?>
                             </div>
                             <?php echo form_label('Telefone', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-2">
@@ -86,11 +78,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             </div>
                         </div>
                         <div class="form-group">
-                            <?php echo form_label('Pós Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                            <?php echo form_label('Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-2">
-                                <?php echo form_dropdown($especializacao); ?>
+                                <?php echo form_dropdown($graduacao); ?>
                             </div>
-                            <?php echo form_label('Nome da Pós Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                            <?php echo form_label('Nome da Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-4">
                                 <?php echo form_input($nome_pos); ?>
                             </div>

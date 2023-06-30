@@ -25,36 +25,82 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
                         <?php echo form_fieldset('Dados'); ?>
                         <!---Inicio campos  --->
-                        <div class="form-group">
-                            <?php echo form_label('Nome', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($nome); ?>
+                            <div class="form-group">
+                                <?php echo form_label('CPF', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_input($cpf); ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <?php echo form_label('Idade', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($idade); ?>
+                            <div class="form-group">
+                                <?php echo form_label('Nome do Servidor', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-3">
+                                    <?php echo form_input($nome); ?>
+                                </div>
+                                <?php echo form_label('Data de Nascimento', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_input($dt_nascimento); ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <?php echo form_label('Ordem', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($ordem); ?>
+                            <div class="form-group">   
+                                <?php echo form_label('Cidade de Residencia', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($cidade_residencia); ?>
+                                </div>
+                                <?php echo form_label('Telefone', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_input($telefone); ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <?php echo form_label('Ordem Combo', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($ordem_combo); ?>
+                            <div class="form-group">   
+                            <?php echo form_label('Endereço', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-5">
+                                    <?php echo form_input($endereco); ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group">
-                            <?php echo form_label('Ordem Escola', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($ordem_escola); ?>
+                            <div class="form-group">
+                                <?php echo form_label('Sexo', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($sexo); ?>
+                                </div>
+                                <?php echo form_label('E-mail', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-4">
+                                    <?php echo form_input($email); ?>
+                                </div>
                             </div>
-                        </div>
+                            <div class="form-group">
+                                <?php echo form_label('Ensino Médio', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($ensino_medio); ?>
+                                </div>
+                                <?php echo form_label('Ensino Superior', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($ensino_superior); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php echo form_label('Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($graduacao); ?>
+                                </div>
+                                <?php echo form_label('Nome da Graduação', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-4">
+                                    <?php echo form_input($nome_pos); ?>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <?php echo form_label('Area do Concurso', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($area_concurso); ?>
+                                </div>
+                                <?php echo form_label('Ano de Admissão', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-1">
+                                    <?php echo form_input($ano_admissao); ?>
+                                </div>
+                                <?php echo form_label('Regime de Trabalho', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <div class="col-sm-2">
+                                    <?php echo form_dropdown($regime); ?>
+                                </div>
+                            </div>
                         <!--fim campos---->
                         
                         <?php echo form_fieldset_close(); ?>

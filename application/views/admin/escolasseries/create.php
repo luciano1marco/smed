@@ -46,7 +46,7 @@
 							                echo '</br>';
                                         }
                                         echo form_fieldset_close();
-                                        ?>
+                                ?>
                                 
 
                                 <div class="form-group">
