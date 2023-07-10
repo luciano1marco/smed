@@ -6,6 +6,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php echo $pagetitle; ?>
 		<?php echo $breadcrumb; ?>
 		<?php $anchor = 'admin/' . $this->router->class; ?>
+		<?php $anchor1 = 'admin/escolas'; ?>
+		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
@@ -15,12 +17,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="box-header with-border">
 						<div class="panel panel-azul">
 							<div class="panel-heading">
-								<h3 align="center" style="color:black">Lista de Servidores da Escola</h3>
+								<?php foreach ($escolas as $e) : ?>
+									<h3 align="center" style="color:black">Lista de Servidores da Escola <?php echo $e['nome']; ?></h3>
+								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Novo Servidor', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Servidor', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+									
 					</div>
 					<div class="box-body">
 						<table class="table table-striped table-hover datatable">

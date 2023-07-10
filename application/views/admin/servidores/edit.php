@@ -2,12 +2,18 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 ?>
+<!---busca o idescola do servidor---------->
+<?php foreach ($idescola as $ide) : ?>
+	<?php $idescola = $ide['escola_id']; ?>
+<?php endforeach; ?>
 
 <div class="content-wrapper">
     <section class="content-header">
         <?php echo $pagetitle; ?>
         <?php echo $breadcrumb; ?>
         <?php $anchor = 'admin/' . $this->router->class; ?>
+        <?php $anchor1 = 'admin/servidores/'; ?>
+
     </section>
 
     <section class="content">
@@ -26,7 +32,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <?php echo form_fieldset('Dados'); ?>
                         <!---Inicio campos  --->
                             <div class="form-group">
-                                <?php echo form_label('CPF', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                                <?php echo form_label('CPF', 'cpf', array('class' => 'col-sm-2 control-label')); ?>
                                 <div class="col-sm-2">
                                     <?php echo form_input($cpf); ?>
                                 </div>
@@ -44,7 +50,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                             <div class="form-group">   
                                 <?php echo form_label('Cidade de Residencia', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                                 <div class="col-sm-2">
-                                    <?php echo form_dropdown($cidade_residencia); ?>
+                                    <?php echo form_dropdown($cidade); ?>
                                 </div>
                                 <?php echo form_label('Telefone', 'nome', array('class' => 'col-sm-2 control-label')); ?>
                                 <div class="col-sm-2">
@@ -73,7 +79,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     <?php echo form_dropdown($ensino_medio); ?>
                                 </div>
                                 <?php echo form_label('Ensino Superior', 'nome', array('class' => 'col-sm-2 control-label')); ?>
-                                <div class="col-sm-2">
+                                <div class="col-sm-3">
                                     <?php echo form_dropdown($ensino_superior); ?>
                                 </div>
                             </div>
@@ -117,7 +123,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     ?>
 
                                     <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
-                                    <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+                                    <?php echo anchor($anchor1."/index/".$idescola, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     <?php echo form_button(array('type' => 'button', 'class' => 'btn btn-danger btn-flat', 'content' => $delete, "id" => "btExcluir")); ?>
                                    
                                 </div>
@@ -131,7 +137,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </section>
 </div>
 
-
+<!--modal delete-->
 <div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

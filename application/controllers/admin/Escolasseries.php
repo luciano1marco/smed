@@ -66,8 +66,8 @@ class escolasseries extends Admin_Controller {
                 foreach ($series as $row ) {
                    // var_dump($row);
                    // R::fancyDebug(true);
-                  // $lixo = R::findAll("escolasseries", 'id_escola ='.$id);
-                  // R::trashAll($lixo);
+                   // $lixo = R::findAll("escolasseries", 'id_escola ='.$id);
+                   // R::trashAll($lixo);
 
                     $resp = R::dispense("escolasseries");
                     $resp->id_escola = $id;

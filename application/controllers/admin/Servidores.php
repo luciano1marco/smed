@@ -26,6 +26,11 @@ class servidores extends Admin_Controller {
                   /* Data */
                   $this->data['error'] = NULL;
                  
+                    //--chama do banco a tabela escolas
+                   
+                    $sqlescola = "SELECT * from escolas where id = ".$id;
+                    $this->data['escolas']= R::getAll($sqlescola); 
+                   
                   //$this->data['servidor']= R::findAll('servidores');   
                   $sql="SELECT 	m.descricao as Matricula , 
                                 ss.nome as nome,
@@ -46,46 +51,13 @@ class servidores extends Admin_Controller {
                  
                  
                   $this->data['servidor']= R::getAll($sql); 
-                 
+                
                     /* Load Template */
                    $this->template->admin_render('admin/servidores/index', $this->data);
                 }
 
          
 	}
-    public function viewservidor($id){
-
-       
-
-        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
-            { redirect('auth/login', 'refresh'); }
-        else
-            { /* Breadcrumbs */
-              $this->data['breadcrumb'] = $this->breadcrumbs->show();
-              /* Data */
-              $this->data['error'] = NULL;
-             
-              //$this->data['servidor']= R::findAll('servidores');   
-              $sql="    SELECT id,nome,telefone,email 
-                        from servidores as ss
-                        
-                        inner join servidorescola as sse
-                        on ss.id = sse.idservidor 
-
-                        inner join matricula as m
-                        on m.idservidor = ss.id
-
-                        where sse.escola_id =".$id."
-                        GROUP BY ss.nome ";
-              $this->data['servidor']= R::getAll($sql); 
-                    
-             
-               /* Load Template */
-               $this->template->admin_render('admin/servidores/index', $this->data);
-            }
-
-     
-}
     public function getServidores() {     
 		/* POST data */
 		$postData = $this->input->post();
@@ -97,22 +69,26 @@ class servidores extends Admin_Controller {
 		
 		echo $resp;		
 	}
-    public function create() {
+    public function create($id) {
 		/* Breadcrumbs */
 		$this->breadcrumbs->unshift(2, "Novo Servidor", 'admin/servidores/create');
 		$this->data['breadcrumb'] = $this->breadcrumbs->show();
-
+        $this->data['id'] =$id;
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
         /* Nome do Botão Criar do INDEX */
         $this->data['texto_create'] = 'Servidores';
 		/* Validate form input */
 		$this->form_validation->set_rules('nome', 'nome', 'required');
+        $this->form_validation->set_rules('cpf', 'cpf', 'required');
+        $this->form_validation->set_rules('matricula', 'matricula', 'required');
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
+           
 			$resp = R::dispense("servidores");
-			$resp->nome             = strtoupper($this->input->post('nome'));
+            $resp->matricula        = strtoupper($this->input->post('matricula'));
+            $resp->nome             = strtoupper($this->input->post('nome'));
             $resp->cpf              = strtoupper($this->input->post('cpf'));
             $resp->cidade           = strtoupper($this->input->post('cidade'));
             $resp->telefone         = strtoupper($this->input->post('telefone'));
@@ -129,17 +105,40 @@ class servidores extends Admin_Controller {
             $resp->ano_admissao     = strtoupper($this->input->post('ano_admissao'));
             $resp->regime           = strtoupper($this->input->post('regime'));
             $resp->id_user          = $this->session->user_id;
-           // $resp->dt_alteracao     = strtoupper($this->input->post('dt_alteracao'));
-            
-                        
-			R::store($resp);
+            R::store($resp);
 
+            //buscar idservidor cadastrado-----
+            $ag = R::findAll("servidores", "cpf = ".$resp->cpf);
+            
+            foreach($ag as $re2){
+                $idserv = $re2['id'];
+            }
+            //adicionar a tabela servidorescola------
+             $resp1 = R::dispense("servidorescola");
+             $resp1->escola_id  = $id;
+             $resp1->iduser     = $this->session->user_id;
+             $resp1->idservidor = $idserv;
+             R::store($resp1);
+            
+             //adicionar a tabela matricula------
+             $resp3 = R::dispense("matricula");
+             $resp3->idservidor = $idserv;
+             $resp3->descricao = $resp->matricula;
+             R::store($resp3);
+        
 			$this->session->set_flashdata('message', "Dados gravados");
-			redirect('admin/servidores', 'refresh');
+			redirect('admin/escolas', 'refresh');
 		} 
                 else {
                        $this->data['message'] = (validation_errors() ? validation_errors() : "");
-
+                    //---dados do servidor-----------
+                    $this->data['matricula'] = array(
+                        'name'  => 'matricula',
+                        'id'    => 'matricula',
+                        'type'  => 'text',
+                        'class' => 'form-control',
+                        'value' => $this->form_validation->set_value('matricula'),
+                    );
                        $this->data['nome'] = array(
                             'name'  => 'nome',
                             'id'    => 'nome',
@@ -253,7 +252,24 @@ class servidores extends Admin_Controller {
                             'class' => 'form-control',
                             'value' => $this->form_validation->set_value('regime'),
                         );
-                        
+                    //---designacoes do servidor
+                        $this->data['designacao'] = array(
+                            'name'  => 'designacao',
+                            'id'    => 'designacao',
+                            'type'  => 'int',
+                            'options'  => $this->getdesignacao(),
+                            'class' => 'form-control',
+                            'value' => $this->form_validation->set_value('designacao'),
+                        );   
+                        $this->data['turno'] = array(
+                            'name'  => 'turno',
+                            'id'    => 'turno',
+                            'type'  => 'int',
+                            'options'  => $this->getturno(),
+                            'class' => 'form-control',
+                            'value' => $this->form_validation->set_value('turno'),
+                        );
+                       
                     }
                     
 			/* Load Template */
@@ -290,8 +306,15 @@ class servidores extends Admin_Controller {
             /* Nome do Botão Criar do INDEX */
             $this->data['texto_edit'] = 'Servidor';
             /* Validate form input */
-            $this->form_validation->set_rules('descricao', 'descricao', 'required');
-            
+            $this->form_validation->set_rules('cpf', 'cpf', 'required');
+            /* busca idescola pelo idservidor */
+            $sql="SELECT se.escola_id from servidores as s
+                  inner join servidorescola as se
+                  on se.idservidor = s.id  
+                  where s.id = ".$id;
+            $this->data['idescola']= R::getAll($sql);
+
+            /* consulta para editar o servidor */
             $resp = R::load("servidores", $id);
 
             if ($this->form_validation->run()) {
@@ -311,10 +334,11 @@ class servidores extends Admin_Controller {
                 $resp->area_concurso    = strtoupper($this->input->post('area_concurso'));
                 $resp->ano_admissao     = strtoupper($this->input->post('ano_admissao'));
                 $resp->regime           = strtoupper($this->input->post('regime'));
-               
+                $resp->idcadastrou      = $this->session->user_id;
+
                 R::store($resp);
 
-                redirect('admin/servidores', 'refresh');
+                redirect('admin/servidores/view/'.$id, 'refresh');
             } else {
                 // set the flash data error message if there is one
                 $this->data['message'] = (validation_errors() ? validation_errors() : "");
@@ -399,15 +423,7 @@ class servidores extends Admin_Controller {
                         'selected'=> $resp->ensino_superior,
                         'value' => $resp->ensino_superior,
                     );
-                    $this->data['localizacao'] = array(
-                        'name'  => 'localizacao',
-                        'id'    => 'localizacao',
-                        'type'  => 'dropdown',
-                        'options'  => $this->getlocalizacao(),
-                        'class' => 'form-control',
-                        'selected'=> $resp->localizacao,
-                        'value' => $resp->localizacao,
-                    );
+                   
                     $this->data['graduacao'] = array(
                         'name'  => 'graduacao',
                         'id'    => 'graduacao',
@@ -463,86 +479,120 @@ class servidores extends Admin_Controller {
                 $this->data['breadcrumb'] = $this->breadcrumbs->show();
                 /* Data */
                 $this->data['error'] = NULL;
+                $this->data['id'] =$id;//idservidor
                 
                 //--chama do banco a tabela servidores 
-                $sqlser = "SELECT 		s.id,s.nome,s.cpf,s.cidade,s.telefone,s.endereco,s.dt_nascimento,
+                $sqlser = " SELECT 		s.id,s.nome as nome,s.cpf,s.cidade,s.telefone,s.endereco,s.dt_nascimento,
                                         s.sexo,s.email,s.ensino_medio,s.ensino_superior,s.graduacao,s.nome_pos,
-                                        s.area_concurso,s.ano_de_admissao,s.regime_trabalho,s.id_quem_cadastrou,s.data_ultima_alteracao,
+                                        s.area_concurso,s.ano_admissao,s.regime,s.idcadastrou,
+                                        s.dataalteracao,
                                         c.descricao as desccidade,
                                         se.descricao as descsexo,
                                         em.descricao as descensinomedio,
                                         es.descricao as descensinosuperior,
                                         g.descricao as descgraduacao,
                                         ac.descricao as descareaconcurso,
-                                        r.descricao as descregime
-                
+                                        r.descricao as descregime,
+                                        ses.escola_id as idescola,
+                                        ses.id as idservesc
                             FROM servidores as s
+
+                            left join servidorescola as ses
+                            on ses.idservidor = s.id
                             
-                            inner join cidade as c
+                            LEFT join cidade as c
                             on s.cidade = c.id
                             
-                            inner join sexo as se
+                            LEFT join sexo as se
                             on s.sexo = se.id
                             
-                            inner join ensinomedio as em
+                            LEFT join ensinomedio as em
                             on s.ensino_medio = em.id
                             
-                            inner join ensinosuperior as es
+                            LEFT join ensinosuperior as es
                             on s.ensino_superior = es.id
                             
-                            inner join posgraduacao as g
+                            LEFT join posgraduacao as g
                             on s.graduacao = g.id
                             
-                            inner join areaconcurso as ac
+                            LEFT join areaconcurso as ac
                             on s.area_concurso = ac.id
                             
-                            inner join regime as r
-                            on s.regime_trabalho = r.id
+                            LEFT join regime as r
+                            on s.regime = r.id
                             
-                            where s.id = " .$id ;
+                            where s.id = '$id'
+                            GROUP BY nome" ;
+                            
                 
                 $this->data['servidor']= R::getAll($sqlser); 
                 
                 //--chama do banco a tabela matriculas do servidor
                 $sqlma="SELECT * from matricula 
                             where idservidor =".$id;
-
                 $this->data['matricula']= R::getAll($sqlma); 
                 
                 //--chama do banco a tabela servidorescola(designações)
                 $sql1=" SELECT  se.id, se.turmas_atende,se.obsch,se.dt_cadastro,
+                                e.id as idescola,
                                 e.nome as escola,
                                 c.descricao as designacao,
                                 t.descricao as turno,
                                 l.descricao as licenca,
                                 st.descricao as setor,
-                                u.username as users
+                                u.username as users,
+                                se.id as idservesc
+                               
                             FROM `servidorescola` as se
                             
-                            inner join escolas as e
+                            LEFT join escolas as e
                             on se.escola_id = e.id
                             
-                            inner join convocacao as c
+                            LEFT join designacao as c
                             on c.id = se.designacao
                             
-                            inner join turnos as t
+                            LEFT join turnos as t
                             on t.id = se.turno
                             
-                            inner join licencas as l
+                            LEFT join licencas as l
                             on l.id = se.licenca
                             
-                            inner join setor as st
+                            LEFT join setor as st
                             on st.id = se.setor
                             
-                            inner join users as u
+                            LEFT join users as u
                             on u.id = se.iduser
 
                             where se.idservidor = ".$id;
 
-                $this->data['designacao']= R::getAll($sql1); 
+               // $this->data['designacao']= R::getAll($sql1); 
                
-               
-                  /* Load Template */
+                $ae = R::getAll($sql1);
+                foreach($ae as $a){
+                    //chama a tabela servidordisciplina->disciplina
+                     $sqld = "   SELECT   d.descricao as disciplina
+                                from servidordisciplina as sd
+                        
+                                left join disciplinas as d
+                                on d.id = sd.iddisciplina
+                        
+                                where   sd.idservidorescola = ".$a['idservesc'];
+                     $sqla = "   SELECT   a.descricao as anos
+                                from servidoranosatende as sa
+                        
+                                left join anosatende as a
+                                on a.id = sa.idanosatende
+                        
+                                where   sa.idservidorescola = ".$a['idservesc'];           
+                   
+                   $a['disc'] = R::getAll($sqld); 
+                   $a['atende']= R::getAll($sqla); 
+                   
+                   $etapas[] = $a;
+                }
+                $this->data['designacao']= $etapas;
+   
+                /* Load Template */
                $this->template->admin_render('admin/servidores/view', $this->data);
             }
 }
@@ -622,7 +672,21 @@ class servidores extends Admin_Controller {
 		}
 		return $op;
 	}
-   
-    //--
+    private function getdesignacao() {
+		$teste = R::findAll("designacao");
+		foreach ($teste as $o) {
+			$op[$o->id] = $o->descricao;
+		}
+		return $op;
+	}
+    private function getturno() {
+		$teste = R::findAll("turnos");
+		foreach ($teste as $o) {
+			$op[$o->id] = $o->descricao;
+		}
+		return $op;
+	}
+  
+    
 
 }//fim classe

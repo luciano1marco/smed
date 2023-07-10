@@ -42,7 +42,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 							<tbody>
 
-								<?php foreach ($convocacao as $i) : ?>
+								<?php foreach ($designacao as $i) : ?>
 									<tr>
 
 										<td><?php echo htmlspecialchars($i['descricao'], ENT_QUOTES, 'UTF-8'); ?></td>

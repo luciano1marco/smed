@@ -8,7 +8,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <?php echo $pagetitle; ?>
         <?php echo $breadcrumb; ?>
         <?php $anchor = 'admin/' . $this->router->class; ?>
-        <?php $anchor2 = 'admin/servidores/view/'.$id ?>
     </section>
 
     <section class="content">
@@ -26,45 +25,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <?php echo form_fieldset('Dados'); ?>
                         <!--campos -->
                         <div class="form-group">
-                            <?php echo form_label('Selecione a Escola', 'escola_id', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($escola_id); ?>
+                            <?php echo form_label('Descricao', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-6">
+                                <?php echo form_input($descricao); ?>
                             </div>
-                            <?php echo form_label('Designação', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($designacao); ?>
-                            </div>
-                        </div> 
-                        <div class="form-group">   
-                            <?php echo form_label('Turno', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($turno); ?>
-                            </div>
-                            <?php echo form_label('Turmas que Atende', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_input($turmas_atende); ?>
-                            </div>
-                        </div>    
-                        <div class="form-group">    
-                            <?php echo form_label('Setor', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($setor); ?>
-                            </div>
-                            <?php echo form_label('Licença', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($licenca); ?>
-                            </div>
-                        </div>    
-                        <div class="form-group">   
-                            <?php echo form_label('Observação', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_input($obsch); ?>
-                            </div>
-                            <?php echo form_label('Nome do Servidor', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-3">
-                                <?php echo form_dropdown($idservidor); ?>
-                            </div>
-                            
                         </div>
                        
 
@@ -83,7 +47,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     ?>
 
                                     <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
-                                    <?php echo anchor($anchor2, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+                                    <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     <?php echo form_button(array('type' => 'reset', 'class' => 'btn btn-warning btn-flat', 'content' => $redo)); ?>
                                     
                                 </div>
