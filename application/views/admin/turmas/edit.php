@@ -20,22 +20,51 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="box-body">
                         <?php echo $message; ?>
 
-                        <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_user')); ?>
-                        <?php echo form_hidden($id); ?>
+                        <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-edit')); ?>
+                        <?php echo form_hidden('id',$id); ?>
 
                         <?php echo form_fieldset('Dados'); ?>
                         <!---Inicio campos  --->
                         <div class="form-group">
                             <?php echo form_label('Descrição', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
-                            <div class="col-sm-6">
-                            <?php echo form_input($descricao); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($descricao); ?>
+                            </div>
+                            <?php echo form_label('CF', 'capacidade', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($capacidade); ?>
+                            </div>
+                            <?php echo form_label('CP', 'capacidade_p', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($capacidade_p); ?>
+                            </div>
+                            <?php echo form_label('Regular', 'regular', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($regular); ?>
+                            </div>
+                            <?php echo form_label('PNESL', 'pnesl', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($pnesl); ?>
+                            </div>
+                            <?php echo form_label('PNECL', 'pnecl', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($pnecl); ?>
+                            </div>
+                            <?php echo form_label('Matriculas', 'matriculas', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_input($matriculas); ?>
+                            </div>
+                            <?php echo form_label('Series', 'idserie', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_dropdown($idserie); ?>
+                            </div>
+                            <?php echo form_label('Turno', 'idturno', array('class' => 'col-sm-2 control-label')); ?>
+                            <div class="col-sm-2">
+                                <?php echo form_dropdown($idturno); ?>
                             </div>
                         </div>
-                       
                         <!--fim campos---->
-                        
                         <?php echo form_fieldset_close(); ?>
-                        
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
                                 <div class="btn-group">
@@ -46,11 +75,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                                     $delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';
                                     $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';
                                     ?>
-
                                     <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
-                                    <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+                                    <?php echo anchor($anchor."/index/".$idescola1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     <?php echo form_button(array('type' => 'button', 'class' => 'btn btn-danger btn-flat', 'content' => $delete, "id" => "btExcluir")); ?>
-                                   
                                 </div>
                             </div>
                         </div>
@@ -62,7 +89,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </section>
 </div>
 
-
+<!----modal--------->
 <div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

@@ -29,7 +29,7 @@ class series extends Admin_Controller {
                   /* Data */
                   $this->data['error'] = NULL;
                   
-                  $this->data['series']= R::findAll('series');   
+                  $this->data['series']= R::findAll('series', "order by id asc");   
                   
                    /* Load Template */
                    $this->template->admin_render('admin/series/index', $this->data);
@@ -42,15 +42,15 @@ class series extends Admin_Controller {
 
 		/* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
-        /* Nome do Botão Criar do INDEX */
+        /* descricao do Botão Criar do INDEX */
         $this->data['texto_create'] = 'series';
 		/* Validate form input */
-		$this->form_validation->set_rules('', 'nome', 'required');
+		$this->form_validation->set_rules('', 'descricao', 'required');
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
 			$resp = R::dispense("series");
-			$resp->nome  = strtoupper($this->input->post('nome'));
+			$resp->descricao  = strtoupper($this->input->post('descricao'));
                                     
 			R::store($resp);
 
@@ -60,12 +60,12 @@ class series extends Admin_Controller {
                 else {
                        $this->data['message'] = (validation_errors() ? validation_errors() : "");
 
-                       $this->data['nome'] = array(
-                            'name'  => 'nome',
-                            'id'    => 'nome',
+                       $this->data['descricao'] = array(
+                            'name'  => 'descricao',
+                            'id'    => 'descricao',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'value' => $this->form_validation->set_value('nome'),
+                            'value' => $this->form_validation->set_value('descricao'),
                         );
                        
                     }
@@ -101,15 +101,15 @@ class series extends Admin_Controller {
             $this->data['breadcrumb'] = $this->breadcrumbs->show();
            
             $tables = $this->config->item('tables', 'ion_auth');
-            /* Nome do Botão Criar do INDEX */
+            /* descricao do Botão Criar do INDEX */
             $this->data['texto_edit'] = 'series';
             /* Validate form input */
-            $this->form_validation->set_rules('nome', 'nome', 'required');
+            $this->form_validation->set_rules('descricao', 'descricao', 'required');
             
             $resp = R::load("series", $id);
 
             if ($this->form_validation->run()) {
-                $resp->nome  = strtoupper($this->input->post('nome'));
+                $resp->descricao  = strtoupper($this->input->post('descricao'));
                
 
                 R::store($resp);
@@ -121,12 +121,12 @@ class series extends Admin_Controller {
 
                 $this->data['t_id'] = array('id' => $resp->id);
                 
-                    $this->data['nome'] = array(
-                        'name'  => 'nome',
-                        'id'    => 'nome',
+                    $this->data['descricao'] = array(
+                        'name'  => 'descricao',
+                        'id'    => 'descricao',
                         'type'  => 'text',
                         'class' => 'form-control',
-                        'value' => $resp->nome,
+                        'value' => $resp->descricao,
                     );
                    
                   }

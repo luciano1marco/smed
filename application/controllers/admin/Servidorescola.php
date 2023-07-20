@@ -66,8 +66,8 @@ class servidorescola extends Admin_Controller {
         	R::store($resp);
 
              //--busca idservidorescola
-             $respse = R::findAll("servidorescola", "idservidor = ".$id);
-             foreach($resse as $se){
+             $respe = R::findAll("servidorescola", "idservidor = ".$id);
+             foreach($respe as $se){
                  $idservesc = $se['id'];
              }
 
@@ -80,12 +80,13 @@ class servidorescola extends Admin_Controller {
                 R::store($respd);
             } 
             //-- insere na tabela servidoranosatende
+           
             $anos = $this->input->post('anos');  
             foreach ($anos as $row){
                 $respa = R::dispense("servidoranosatende");
                 $respa->idservidorescola = $idservesc;
                 $respa->idanosatende = $row;
-                R::store($respd);
+                R::store($respa);
             }
 
            	$this->session->set_flashdata('message', "Dados gravados");
@@ -165,14 +166,7 @@ class servidorescola extends Admin_Controller {
                 'class' => 'form-control',
                 'value' => $this->form_validation->set_value('disciplina'),
             );
-            $this->data['disciplina'] = array(
-                'name'  => 'disciplina',
-                'id'    => 'disciplina',
-                'type'  => 'int',
-                'options'  => $this->getdisciplina(),
-                'class' => 'form-control',
-                'value' => $this->form_validation->set_value('disciplina'),
-            );
+            
             $this->data['anosatende'] = array(
                 'name'  => 'anosatende',
                 'id'    => 'anosatende',

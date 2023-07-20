@@ -118,8 +118,6 @@ class matricula extends Admin_Controller {
 
             if ($this->form_validation->run()) {
                 $resp->descricao  = strtoupper($this->input->post('descricao'));
-               
-
                 R::store($resp);
 
                 redirect('admin/matricula', 'refresh');
@@ -136,7 +134,6 @@ class matricula extends Admin_Controller {
                         'class' => 'form-control',
                         'value' => $resp->descricao,
                     );
-                   
                   }
 
                 /* Load Template */

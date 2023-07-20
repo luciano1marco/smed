@@ -33,9 +33,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<table class="table table-striped table-hover datatable">
 							<thead>
 								<tr>
-									<!--<th>ID</th>-->
+									<th>Id</th>
 									<th>Nome</th>
-												
 									<th>Ação</th>
 								</tr>
 							</thead>
@@ -44,8 +43,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<?php foreach ($series as $i) : ?>
 									<tr>
-
-										<td><?php echo htmlspecialchars($i['nome'], ENT_QUOTES, 'UTF-8'); ?></td>
+									<td><?php echo htmlspecialchars($i['id'], ENT_QUOTES, 'UTF-8'); ?></td>
+										<td><?php echo htmlspecialchars($i['descricao'], ENT_QUOTES, 'UTF-8'); ?></td>
 											<!-- Opções -->
 										<td>
 											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>

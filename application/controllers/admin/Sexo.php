@@ -45,12 +45,12 @@ class sexo extends Admin_Controller {
         /* Nome do Botão Criar do INDEX */
         $this->data['texto_create'] = 'sexo';
 		/* Validate form input */
-		$this->form_validation->set_rules('', 'nome', 'required');
+		$this->form_validation->set_rules('descricao', 'descricao', 'required');
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
 			$resp = R::dispense("sexo");
-			$resp->nome  = strtoupper($this->input->post('nome'));
+			$resp->descricao  = strtoupper($this->input->post('descricao'));
                                     
 			R::store($resp);
 
@@ -60,12 +60,12 @@ class sexo extends Admin_Controller {
                 else {
                        $this->data['message'] = (validation_errors() ? validation_errors() : "");
 
-                       $this->data['nome'] = array(
-                            'name'  => 'nome',
-                            'id'    => 'nome',
+                       $this->data['descricao'] = array(
+                            'name'  => 'descricao',
+                            'id'    => 'descricao',
                             'type'  => 'text',
                             'class' => 'form-control',
-                            'value' => $this->form_validation->set_value('nome'),
+                            'value' => $this->form_validation->set_value('descricao'),
                         );
                        
                     }
@@ -104,7 +104,7 @@ class sexo extends Admin_Controller {
             /* Nome do Botão Criar do INDEX */
             $this->data['texto_edit'] = 'sexo';
             /* Validate form input */
-            $this->form_validation->set_rules('nome', 'nome', 'required');
+            $this->form_validation->set_rules('descricao', 'descricao', 'required');
             
             $resp = R::load("sexo", $id);
 

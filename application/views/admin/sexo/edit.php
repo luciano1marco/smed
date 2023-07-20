@@ -20,13 +20,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
                     <div class="box-body">
                         <?php echo $message; ?>
 
-                        <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-create_user')); ?>
-                        <?php echo form_hidden($id); ?>
+                        <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-edit')); ?>
+                        <?php echo form_hidden('id',$id); ?>
 
                         <?php echo form_fieldset('Dados'); ?>
                         <!---Inicio campos  --->
                         <div class="form-group">
-                            <?php echo form_label('Nome', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                            <?php echo form_label('Descrição', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-6">
                             <?php echo form_input($descricao); ?>
                             </div>
@@ -62,23 +62,90 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </section>
 </div>
 
-
-<div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+<!-- modal -->            
+<div class="modal fade" id="modal_delete">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title"><b>Atenção!</b></h4>
+                <h4 class="modal-title">Atenção!</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-
             <div class="modal-body">
-                <p>Deseja realmente excluir esse registro?</p>
+                <p>Deseja realmente excluir esse tipo de registro?</p>
             </div>
+            <div class="modal-footer justify-content-between">
+            <?php                                               
+            $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';                     
+            $delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';                               
+            ?>
+            <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo $cancel; ?></button>
+            <button type="button" class="btn btn-danger" id="btExcluirConfirmar"><?php echo $delete; ?></button> 
+            </div>
+        </div>  <!-- /.modal-content -->
+    </div> <!-- /.modal-dialog -->
+</div>  <!-- /.modal -->    
 
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger" id="btExcluirConfirmar">Excluir</button>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+<script>
+  $(document).ready(function() {
+
+// Desliga o Validate para poder usar apenas validação SERVER CI
+//$("#form-edit").validate({ ignore: "*" });
+
+$.validator.setDefaults({     
+    // O Select Picker precisa mudar o erro de local         
+    errorPlacement: function (error, element) {     
+        if (element.hasClass('icone')) {
+            error.insertAfter('.icone_erro');            
+        } else if(element.hasClass('familiar')) {
+            error.insertAfter('.section_erro');    
+        } else {
+            error.insertAfter(element);
+        }          
+    }
+});
+
+$('.icheck').on('ifChecked', function(event){      
+    $('#'+this.name).validate();       
+});
+
+$("#form-edit").validate({   
+    errorClass: "is-invalid",
+    validClass: "is-valid",   
+    errorElement: 'p',
+    errorPlacement: function (error, element) {
+        error.addClass('invalid-feedback');
+        element.closest('.form-group').append(error);
+    },       
+    highlight: function(element, errorClass) {
+        $(element).fadeOut(function() {
+            $(element).addClass(errorClass);
+            $(element).fadeIn();                                
+        });
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass(errorClass).addClass(validClass);
+        $(element.form).find("label[for=" + element.id + "]")
+        .removeClass(errorClass);
+    },
+    rules: {
+        descricao: {
+            required: true,
+        }            
+    },
+    messages: {
+        descricao:  'O campo Descrição é obrigatório.'
+        },
+    submitHandler: function(form) {
+        form.submit();
+    }
+});
+
+// No Editar é bom já chamar a validação
+$("#form-edit").validate().form();
+
+});
+       
+
+</script>

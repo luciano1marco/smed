@@ -232,7 +232,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 												
 												<div class="col-md-2">
 													<ul class="list-group list-group-flush">
-														<li class="list-group-item"><?php if(($es)) echo $es['nome']; else echo $teste; ?></li>
+														<li class="list-group-item"><?php if(($es)) echo $es['descricao']; else echo $teste; ?></li>
 													</ul>		
 												</div>		
 											<?php endforeach; ?>	

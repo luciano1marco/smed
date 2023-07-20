@@ -25,9 +25,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
                         <?php echo form_fieldset('Dados'); ?>
                         <!--campos -->
                         <div class="form-group">
-                            <?php echo form_label('Nome', 'nome', array('class' => 'col-sm-2 control-label')); ?>
+                            <?php echo form_label('Descrição', 'descricao', array('class' => 'col-sm-2 control-label')); ?>
                             <div class="col-sm-6">
-                                <?php echo form_input($nome); ?>
+                                <?php echo form_input($descricao); ?>
                             </div>
                         </div>
                        

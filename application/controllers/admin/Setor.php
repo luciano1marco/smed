@@ -45,7 +45,7 @@ class setor extends Admin_Controller {
         /* Nome do Botão Criar do INDEX */
         $this->data['texto_create'] = 'setor';
 		/* Validate form input */
-		$this->form_validation->set_rules('Descricao', 'descricao', 'required');
+		$this->form_validation->set_rules('descricao', 'descricao', 'required');
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {

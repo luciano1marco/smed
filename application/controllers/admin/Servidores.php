@@ -338,6 +338,9 @@ class servidores extends Admin_Controller {
 
                 R::store($resp);
 
+                //apagar area de atuacao e anosqueatende
+                //para adicionar as novas
+
                 redirect('admin/servidores/view/'.$id, 'refresh');
             } else {
                 // set the flash data error message if there is one
