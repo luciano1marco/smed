@@ -21,6 +21,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<h3 align="center" style="color:black">Dados da Escola</h3>
 							</div>
 						</div>
+						<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';?>
+						<?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+                    		 		
 					</div>
 					<?php foreach ($escolas as $i) : ?>
 						<?php $id1 = $i['id']; ?>
@@ -114,7 +117,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 									</div>
 								</section> 
-
 								<!--Estrutura da Escola--->
 								<div class="card-body">
 									<section class="content">
@@ -213,8 +215,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</div>
 									</section> 
 								</div>
-								
-								
 								<!--Series da Escola(Anos/Niveis)--->
 								<section class="content">
 									<div class="row">
@@ -239,7 +239,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										</div>
 									</div>
 								</section> 
-								
 								<!--voltar--->
 								<div class="card-footer text-muted">
 									<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';?>

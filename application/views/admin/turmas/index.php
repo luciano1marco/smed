@@ -9,6 +9,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php echo $pagetitle; ?>
 		<?php echo $breadcrumb; ?>
 		<?php $anchor = 'admin/' . $this->router->class; ?>
+		<?php $anchor1 = 'admin/escolas'; ?>
+		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
+	
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -27,6 +30,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</div>
 					<div class="box-header with-border">
 						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Nova Turma', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+				
 						<h4 style="color:blue">PNESL - Pessoa com Necessidade Educacional Especifica Sem Laudo</h4>		
 						<h4 style="color:blue">PNECL - Pessoa com Necessidade Educacional Especifica Com Laudo</h4>		
 					</div>

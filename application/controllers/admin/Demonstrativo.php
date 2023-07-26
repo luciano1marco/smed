@@ -44,12 +44,16 @@ class demonstrativo extends Admin_Controller {
                    $this->template->admin_render('admin/demonstrativo/index', $this->data);
                 }
 	}
-    public function create() {
+    public function create($id) {
 		/* Breadcrumbs */
 		$this->breadcrumbs->unshift(2, "demonstrativo", 'admin/demonstrativo/create');
 		$this->data['breadcrumb'] = $this->breadcrumbs->show();
-
-		/* Variables */
+        //variaveis utilizadas
+        $idescola = $id;
+        $this->data['idescola1'] = $idescola;
+        $diasdomes = date('t');
+        
+        /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
         /* Nome do Botão Criar do INDEX */
         $this->data['texto_create'] = 'Demonstrativo';
@@ -58,25 +62,60 @@ class demonstrativo extends Admin_Controller {
                 
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
-			$resp = R::dispense("demonstrativo");
-			$resp->idescola  = strtoupper($this->input->post('idescola'));
-			$resp->mes_ano   = strtoupper($this->input->post('mes_ano'));
-			$resp->nro_alunos= strtoupper($this->input->post('nro_alunos'));
-			$resp->manha     = strtoupper($this->input->post('manha'));
-			$resp->tarde     = strtoupper($this->input->post('tarde'));
-			$resp->noite     = strtoupper($this->input->post('noite'));
-			$resp->integral  = strtoupper($this->input->post('integral'));
-			$resp->eja       = strtoupper($this->input->post('eja'));
-			$resp->tipo      = strtoupper($this->input->post('tipo'));
-                                    
-			R::store($resp);
 
-			$this->session->set_flashdata('message', "Dados gravados");
-			redirect('admin/demonstrativo', 'refresh');
+           	$resp = R::dispense("demonstrativo");
+                $resp->idescola  = $idescola;
+                $resp->mes_ano   = strtoupper($this->input->post('mes_ano'));
+                $resp->nro_alunos= strtoupper($this->input->post('nro_alunos'));
+                $resp->manha     = strtoupper($this->input->post('manha'));
+                $resp->tarde     = strtoupper($this->input->post('tarde'));
+                $resp->noite     = strtoupper($this->input->post('noite'));
+                $resp->integral  = strtoupper($this->input->post('integral'));
+                $resp->eja       = strtoupper($this->input->post('eja'));
+                $resp->tipo      = strtoupper($this->input->post('tipo'));
+            R::store($resp);
+            
+            $idinserido = $resp->id; //pega o id inserido na tabela demonstrativo 
+            $diasdomes = date('t');//pega numero de dias do mes atual
+            
+            $generos        = $this->input->post(['generos']);
+            $validade       = $this->input->post(['validade']);
+            $saldo_anterior = $this->input->post(['saldo_anterior']);
+            $nro_guia       = $this->input->post(['nro_guia']);
+            $entrada        = $this->input->post(['entrada']);
+            $saida          = $this->input->post(['saida']);
+            $saldo          = $this->input->post(['saldo']);
+
+            foreach($generos        as $ge){}
+            foreach($validade       as $va){}
+            foreach($saldo_anterior as $sa){}
+            foreach($nro_guia       as $ng){}
+            foreach($entrada        as $en){}
+            foreach($saida          as $sd){}
+            foreach($saldo          as $so){}
+            
+            for($i=0;$i<$diasdomes;$i++){
+                $resp1 = R::dispense("demonstrativodia");
+                
+                $resp1->iddemonstrativo = $idinserido;
+                $resp1->dia           = $i + 1;
+                $resp1->generos       = $ge[$i];
+                $resp1->validade      = $va[$i];
+                $resp1->saldo_anterior= $sa[$i];
+                $resp1->nro_guia      = $ng[$i];
+                $resp1->entrada       = $en[$i];
+                $resp1->saida         = $sd[$i];
+                $resp1->saldo         = $so[$i];
+               
+                R::store($resp1); 
+            }
+			
+            $this->session->set_flashdata('message', "Dados gravados");
+			redirect('admin/demonstrativo/index/'.$id, 'refresh');
 		} 
                 else {
                        $this->data['message'] = (validation_errors() ? validation_errors() : "");
-
+                    //dados demonstrativo    
                        $this->data['idescola'] = array(
                             'name'  => 'idescola',
                             'id'    => 'idescola',
@@ -140,12 +179,80 @@ class demonstrativo extends Admin_Controller {
                             'class' => 'form-control',
                             'value' => $this->form_validation->set_value('tipo'),
                         );
-                     }
+                        $this->data['iddemonstrativo'] = array(
+                            'name'  => 'iddemonstrativo[]',
+                            'id'    => 'iddemonstrativo[]',
+                            'type'  => 'int',
+                            'class' => 'form-control',	
+                            'value' => $this->form_validation->set_value('iddemonstrativo'),		
+                        );
+                        $this->data['dia'] = array(
+                            'name'  => 'dia[]',
+                            'id'    => 'dia[]',
+                            'type'  => 'int',
+                            'class' => 'form-control',	
+                            'value' => $this->form_validation->set_value('dia'),
+                        );		
+                        $this->data['generos'] = array(
+                            'name'  => 'generos[]',
+                            'id'    => 'generos[]',
+                            'type'  => 'text',
+                            'class' => 'form-control',
+                            'value' => $this->form_validation->set_value('generos'),
+                        );	
+                        $this->data['validade'] = array(
+                            'name'  => 'validade[]',
+                            'id'    => 'validade[]',
+                            'type'  => 'text',
+                            'class' => 'form-control',			
+                            'value' => $this->form_validation->set_value('validade'),
+                        );	
+                        $this->data['entrada'] = array(
+                            'name'  => 'entrada[]',
+                            'id'    => 'entrada[]',
+                            'type'  => 'text',
+                            'class' => 'form-control'	,		
+                            'value' => $this->form_validation->set_value('entrada'),
+                        );	
+                        $this->data['saldo_anterior'] = array(
+                            'name'  => 'saldo_anterior[]',
+                            'id'    => 'saldo_anterior[]',
+                            'type'  => 'text',
+                            'class' => 'form-control',			
+                            'value' => $this->form_validation->set_value('saldo_anterior'),
+                        );	
+                        $this->data['nro_guia'] = array(
+                            'name'  => 'nro_guia[]',
+                            'id'    => 'nro_guia[]',
+                            'type'  => 'text',
+                            'class' => 'form-control',			
+                            'value' => $this->form_validation->set_value('nro_guia'),
+                        );	
+                        $this->data['saida'] = array(
+                            'name'  => 'saida[]',
+                            'id'    => 'saida[]',
+                            'type'  => 'text',
+                            'class' => 'form-control'	,		
+                            'value' => $this->form_validation->set_value('saida'),
+                        );	
+                        $this->data['saldo'] = array(
+                            'name'  => 'saldo[]',
+                            'id'    => 'saldo[]',
+                            'type'  => 'text',
+                            'class' => 'form-control',			
+                            'value' => $this->form_validation->set_value('saldo'),
+                        );	
+                       
+                    //fim dados demonstrativo    
+                    //dados demonstrativo dia    
+                               			
+                }
                     
 			/* Load Template */
 			$this->template->admin_render('admin/demonstrativo/create', $this->data);
 		
 	}
+ 	
     public function deleteyes($id)  {
 		if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin()) {
 			return show_error('You must be an administrator to view this page.');

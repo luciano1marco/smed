@@ -5,6 +5,8 @@
 		<?php echo $pagetitle; ?>
 		<?php echo $breadcrumb; ?>
 		<?php $anchor = 'admin/' . $this->router->class; ?>
+		<?php $anchor1 = 'admin/escolas'; ?>
+		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
@@ -22,6 +24,8 @@
 					</div>
 					<div class="box-header with-border">
 						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Cardapio', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
 					</div>
 					<div class="box-body">
 						<table class="table table-striped table-hover datatable">
