@@ -1,6 +1,4 @@
-<?php
-defined('BASEPATH') or exit('No direct script access allowed');
-?>
+<?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <div class="content-wrapper">
 	<section class="content-header">
 		<?php echo $pagetitle; ?>
@@ -8,9 +6,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php $anchor = 'admin/' . $this->router->class; ?>
 		<?php $anchor1 = 'admin/escolasestrutura' ?>
 		<?php $anchor2 = 'admin/escolasseries' ?>
-		
 	</section>
-	&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
 		<div class="row">
 			<div class="col-md-12">
@@ -30,7 +27,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="box-header with-border">
 							<!--<h3 class="box-title"><?php echo anchor($anchor . '/create/'. $i['id'], '<i class="fa fa-plus"></i> ' . 'Estrutura', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>&nbsp;&nbsp;--->
 							<div class="card text-center" >
-								
 								<!--Dados da Escola--->
 								<section class="content">
 									<div class="row">
@@ -245,9 +241,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                     			</div>	
 							</div>	
-						
 						</div>	
-					
 				</div>
 			</div>
 		</div>

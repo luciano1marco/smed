@@ -24,7 +24,7 @@
 					</div>
 					<div class="box-header with-border">
 						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Demonstrativo', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
-						&nbsp;&nbsp;&nbsp;&nbsp;
+							&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
 					</div>
 					<div class="box-body">
@@ -44,7 +44,7 @@
 										<td><?php echo htmlspecialchars($i['tipo'], ENT_QUOTES, 'UTF-8');	?></td>
 											<!-- Opções -->
 										<td>
-											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
+											<?php echo anchor($anchor . '/view/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Ver</button>"); ?>
 										</td>
 									</tr>
 								<?php endforeach; ?>

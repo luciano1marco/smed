@@ -5,9 +5,7 @@
         <?php echo $pagetitle; ?>
         <?php echo $breadcrumb; ?>
         <?php $anchor = 'admin/demosntrativodia/' ?>
-        <?php $anchor1 = 'admin/demonstrativo/view' ?>
     </section>
-
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -17,63 +15,55 @@
                     </div>
                     <div class="box-body">
                         <?php echo $message; ?>
-
                         <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-edit')); ?>
                             <?php echo form_hidden('id',$id); ?>
-                            
                             <?php echo form_fieldset('Dados'); ?>
-                            <!---Inicio campos  --->
+                                <!---Inicio campos  --->
                                 <div class="form-group">
                                     <?php echo form_label('Genero', 'genero', array('class' => 'col-sm-2 control-label')); ?>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <?php echo form_input($generos); ?>
                                     </div>
-                                </div>
-                                <div class="form-group">    
                                     <?php echo form_label('Validade', 'validade', array('class' => 'col-sm-2 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-6">
                                         <?php echo form_input($validade); ?>
                                     </div>
-                                    <?php echo form_label('Saldo Anterior', 'saldo_anterior', array('class' => 'col-sm-1 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <?php echo form_label('Saldo Anterior', 'saldo_anterior', array('class' => 'col-sm-2 control-label')); ?>
+                                    <div class="col-sm-6">
                                         <?php echo form_input($saldo_anterior); ?>
                                     </div>
-                                    <?php echo form_label('Número da Guia', 'nro_guia', array('class' => 'col-sm-1 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <?php echo form_label('Número da Guia', 'nro_guia', array('class' => 'col-sm-2 control-label')); ?>
+                                    <div class="col-sm-6">
                                         <?php echo form_input($nro_guia); ?>
                                     </div>
-                                </div>
-                                <div class="form-group">    
                                     <?php echo form_label('Entrada', 'entrada', array('class' => 'col-sm-2 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <div class="col-sm-6">
                                         <?php echo form_input($entrada); ?>
                                     </div>
-                                    <?php echo form_label('Saida', 'saida', array('class' => 'col-sm-1 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <?php echo form_label('Saida', 'saida', array('class' => 'col-sm-2 control-label')); ?>
+                                    <div class="col-sm-6">
                                         <?php echo form_input($saida); ?>
                                     </div>
-                                    <?php echo form_label('Saldo', 'saldo', array('class' => 'col-sm-1 control-label')); ?>
-                                    <div class="col-sm-2">
+                                    <?php echo form_label('Saldo', 'saldo', array('class' => 'col-sm-2 control-label')); ?>
+                                    <div class="col-sm-6">
                                         <?php echo form_input($saldo); ?>
                                     </div>
-                                </div>    
-                           
-                            <!--fim campos---->
+                                </div>
+                                <!--fim campos---->
                             <?php echo form_fieldset_close(); ?>
-                        
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <div class="btn-group">
                                             <?php
                                             $submit = '<i class="fa fa-check"></i> <span>Enviar</span>';
                                             //$edit = '<i class="fa fa-edit"></i> <span>Editar</span>';
-                                            //$redo = '<i class="fa fa-refresh"></i> <span>Reiniciar</span>';
+                                            $redo = '<i class="fa fa-refresh"></i> <span>Reiniciar</span>';
                                             $delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';
                                             $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';
                                             ?>
 
                                             <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
-                                            <?php echo anchor($anchor1.'/'.$iddemo, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+                                            <?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                             <?php echo form_button(array('type' => 'button', 'class' => 'btn btn-danger btn-flat', 'content' => $delete, "id" => "btExcluir")); ?>
                                         
                                         </div>
@@ -87,7 +77,7 @@
     </section>
 </div>
 
-<!----modal ----->
+
 <div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
