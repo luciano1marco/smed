@@ -10,6 +10,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php $anchor2 = 'admin/turmas' ?>
 		<?php $anchor3 = 'admin/cardapio' ?>
 		<?php $anchor4 = 'admin/demonstrativo' ?>
+		<?php $anchor5 = 'admin/atendimento' ?>
 		
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
@@ -48,7 +49,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 											<?php echo anchor($anchor2 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Turmas</button>"); ?>&nbsp;&nbsp;
 											<?php echo anchor($anchor3 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Cardapios</button>"); ?>&nbsp;&nbsp;
 											<?php echo anchor($anchor4 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Demonstrativo</button>"); ?>&nbsp;&nbsp;
-									
+											<?php echo anchor($anchor5 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Atendimento</button>"); ?>&nbsp;&nbsp;
+											
 										</td>
 									</tr>
 								<?php endforeach; ?>

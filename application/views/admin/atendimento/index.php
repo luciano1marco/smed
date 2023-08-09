@@ -9,7 +9,7 @@
 		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
 		<?php $todos = '<i class="fa fa-search"></i> <span>Todos os Anos</span>'; ?>
 		<?php $atual = '<i class="fa fa-search"></i> <span>Ano Atual</span>'; ?>
-	
+		
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
@@ -19,39 +19,36 @@
 					<div class="box-header with-border">
 						<div class="panel panel-azul">
 							<div class="panel-heading">
-							<?php foreach ($escolas as $e) : ?>
-									<h3 align="center" style="color:black">Cardapios da Escola: &nbsp;&nbsp; <?php echo $e['nome']; ?></h3>
+								<?php foreach ($escolas as $e) : ?>
+									<h3 align="center" style="color:white">Atendimento Mensal da Escola: &nbsp;&nbsp; <?php echo $e['nome']; ?></h3>
 								<?php endforeach; ?>
 							</div>
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Cardapio', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
-						&nbsp;&nbsp;&nbsp;&nbsp;
+						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Atendimento Diario', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
+							&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php echo anchor($anchor.'/index/'.$e['id'].'/'. 1, $todos, array('class' => 'btn btn-azul btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
                         <?php echo anchor($anchor.'/index/'.$e['id'].'/'. null, $atual, array('class' => 'btn btn-azul btn-flat')); ?>
-						
+																						
 					</div>
 					<div class="box-body">
 						<table class="table table-striped table-hover datatable">
 							<thead>
 								<tr>
-									<th>De</th>
-									<th>Ate</th>
-									<th>Tipo</th>
+									<!--<th>ID</th>-->
+									<th>Mes/Ano</th>
 									<th>Ação</th>
 								</tr>
 							</thead>
 							<tbody>
-								<?php foreach ($cardapio as $i) : ?>
+								<?php foreach ($atendimento as $i) : ?>
 									<tr>
-									<td><?php echo htmlspecialchars(date_format(date_create($i['semana_de']),"d/m/Y"), ENT_QUOTES, 'UTF-8'); ?></td>
-									<td><?php echo htmlspecialchars(date_format(date_create($i['semana_ate']),"d/m/Y"), ENT_QUOTES, 'UTF-8'); ?></td>
-									<td><?php echo htmlspecialchars($i['tipo'], ENT_QUOTES, 'UTF-8'); ?></td>
-										<!-- Opções -->
+										<td><?php echo htmlspecialchars(date_format(date_create($i['mes_ano']),"m/Y"), ENT_QUOTES, 'UTF-8'); ?></td>
+											<!-- Opções -->
 										<td>
-											<?php echo anchor($anchor . '/edit/' . $i['id'].'/'.$i['idescola'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
+											<?php echo anchor($anchor . '/view/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Ver</button>"); ?>
 										</td>
 									</tr>
 								<?php endforeach; ?>

@@ -5,7 +5,7 @@
         <?php echo $pagetitle; ?>
         <?php echo $breadcrumb; ?>
         <?php $anchor = 'admin/' . $this->router->class; ?>
-        <?php $anchor1 = 'admin/demonstrativo'?>
+        <?php $anchor1 = 'admin/atendimento'?>
         <?php $anchor2 = 'admin/escolas'?>
     </section>
     <section class="content">
@@ -21,17 +21,13 @@
                         <?php echo form_hidden('id',$id); ?>
                         <!---Inicio campos  --->
                                 <!--campos demonstrativo mensal -->
-                                    <?php echo form_fieldset('Dados'); ?>
+                                    <?php echo form_fieldset('Dados de ' .$ano); ?>
                                         <div class="form-group">
                                             <?php echo form_label('Mês', 'mes', array('class' => 'col-sm-2 control-label')); ?>
                                                 <div class="col-sm-2">
-                                                    <?php echo form_dropdown($mes); ?>
+                                                    <?php echo form_dropdown($mes);  ?>
                                                 </div>
-                                            <?php echo form_label('Tipo', 'tipo', array('class' => 'col-sm-2 control-label')); ?>
-                                                <div class="col-sm-6">
-                                                    <?php echo form_input($tipo); ?>
-                                                </div>    
-                                        </div> 
+                                            </div> 
                                         <div class="form-group">  
                                             <?php echo form_label('Número Total Alunos', 'nro_alunos', array('class' => 'col-sm-2 control-label')); ?>
                                                 <div class="col-sm-2">
@@ -80,7 +76,6 @@
                                 <!---Fim Campos demonstrativo mensal--->
                                 <!--campos demonstrativo diario -->
                                     <?php echo form_fieldset('Dias'); ?>
-                                        <?php $diasdomes = date('t');?>
                                         <div class="panel-group" id="accordion">
                                         <?php $diasdomes = date('t');
                                             $s = 1;//para fazer a soma dos dias
@@ -95,37 +90,13 @@
                                                     </div>
                                                     <?php echo'<div id="collapse'.$i.'"class="panel-collapse collapse ">';?>
                                                         <div class="panel-body">
-                                                            <?php echo form_label('Genero', 'generos[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                            <?php echo form_label('Alunos Atendidos', 'alunos_atendidos[]', array('class' => 'col-sm-2 control-label')); ?>
                                                                 <div class="col-sm-2"style="color:blue">
-                                                                    <?php echo ($de['generos']); ?>
+                                                                    <?php echo ($de['alunos_atendidos']); ?>
                                                                 </div>
-                                                        </div>
-                                                        <div class="panel-body">
-                                                            <?php echo form_label('Validade', 'validade[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                            <?php echo form_label('Repeticoes', 'repeticoes[]', array('class' => 'col-sm-2 control-label')); ?>
                                                                 <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['validade']); ?>
-                                                                </div>
-                                                            <?php echo form_label('Número da Guia', 'nro_guia[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                                <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['nro_guia']); ?>
-                                                                </div>
-                                                            <?php echo form_label('Saldo Anterior', 'saldo_anterior[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                                <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['saldo_anterior']); ?>
-                                                                </div>
-                                                        </div>
-                                                        <div class="panel-body">
-                                                            <?php echo form_label('Entrada', 'entrada[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                                <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['entrada']); ?>
-                                                                </div>
-                                                            <?php echo form_label('Saída', 'saida[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                                <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['saida']); ?>
-                                                                </div>
-                                                            <?php echo form_label('Saldo', 'saldo[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                                <div class="col-sm-1"style="color:blue">
-                                                                    <?php echo ($de['saldo']); ?>
+                                                                    <?php echo ($de['repeticoes']); ?>
                                                                 </div>
                                                         </div>
                                                         <?php echo anchor($anchor1.'/edit/'.$de['id'], $edit, array('class' => 'btn btn-azul btn-flat')); ?>

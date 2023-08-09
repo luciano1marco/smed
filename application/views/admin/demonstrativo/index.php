@@ -7,6 +7,9 @@
 		<?php $anchor = 'admin/' . $this->router->class; ?>
 		<?php $anchor1 = 'admin/escolas'; ?>
 		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
+		<?php $todos = '<i class="fa fa-search"></i> <span>Todos os Anos</span>'; ?>
+		<?php $atual = '<i class="fa fa-search"></i> <span>Ano Atual</span>'; ?>
+		
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<section class="content">
@@ -23,9 +26,11 @@
 						</div>
 					</div>
 					<div class="box-header with-border">
-						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Demonstrativo', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
-							&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
+						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Novo Demonstrativo', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>	&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor.'/index/'.$e['id'].'/'. 1, $todos, array('class' => 'btn btn-azul btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+                       	<?php echo anchor($anchor.'/index/'.$e['id'].'/'. null, $atual, array('class' => 'btn btn-azul btn-flat')); ?>
+					
 					</div>
 					<div class="box-body">
 						<table class="table table-striped table-hover datatable">

@@ -20,7 +20,7 @@ class cardapio extends Admin_Controller {
 		$this->anchor = 'admin/'.$this->router->class;
       
     }
-    public function index($id){
+    public function index($id, $at = null){
             if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
                 { redirect('auth/login', 'refresh'); }
             else
@@ -29,6 +29,12 @@ class cardapio extends Admin_Controller {
                   /* Data */
                   $this->data['error'] = NULL;
                  
+                  if($at == null){
+                    $teste = "where  substring(semana_de, 1,4) = YEAR(CURRENT_TIMESTAMP) and    idescola  = ".$id;
+                 }else{
+                    $teste = "where idescola  = ".$id; 
+                 }  
+
                   //sql para mostrar a escola selecionada  
                   $sqlescola = "SELECT * from escolas where id = ".$id;
                   
@@ -37,7 +43,7 @@ class cardapio extends Admin_Controller {
                   //sql para mostra as cardapio da escola
                   $sql ="SELECT  *
                            from cardapio
-                           where idescola  = ".$id;
+                           ".$teste;
                   $this->data['cardapio']= R::getAll($sql);        
 
                     /* Load Template */
