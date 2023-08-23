@@ -25,9 +25,13 @@ class escolas extends Admin_Controller {
                   $this->data['breadcrumb'] = $this->breadcrumbs->show();
                   /* Data */
                   $this->data['error'] = NULL;
-                  
-                  $this->data['escolas']= R::findAll('escolas');   
-                  
+                  //mostra todas escolas
+                  $this->data['escolas']= R::findAll('escolas');  
+                //--vagas na escola
+                   $sqlv = "SELECT sum(capacidade_p - matriculas) as vagas
+                            from turmas 
+                            ";
+                    $this->data['vagas']= R::getAll($sqlv);  
                    /* Load Template */
                    $this->template->admin_render('admin/escolas/index', $this->data);
                 }
@@ -82,12 +86,11 @@ class escolas extends Admin_Controller {
                             where es.id_escola = ".$id;
 
                 $this->data['escolasseries']= R::getAll($sql1); 
-               
-               
+               // var_dump($this->data['vagas']);die;
                   /* Load Template */
                $this->template->admin_render('admin/escolas/view', $this->data);
             }
-}
+    }
     public function create() {
 		/* Breadcrumbs */
 		$this->breadcrumbs->unshift(2, "Nova Escola", 'admin/escolas/create');
@@ -431,7 +434,7 @@ class escolas extends Admin_Controller {
                 /* Load Template */
                 $this->template->admin_render('admin/escolas/edit', $this->data);
     }
-    
+   
     //--Gets-----------------------------------
     private function getlocalizacao() {
 		$teste = R::findAll("localizacao");

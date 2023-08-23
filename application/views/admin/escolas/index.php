@@ -11,6 +11,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php $anchor3 = 'admin/cardapio' ?>
 		<?php $anchor4 = 'admin/demonstrativo' ?>
 		<?php $anchor5 = 'admin/atendimento' ?>
+		<?php $anchor6 = 'admin/hortifruti' ?>
+		<?php $anchor7 = 'admin/pedidos' ?>
 		
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
@@ -27,6 +29,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</div>
 					<div class="box-header with-border">
 						<h3 class="box-title"><?php echo anchor($anchor . '/create', '<i class="fa fa-plus"></i> ' . 'Nova Escola', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>&nbsp;&nbsp;
+						<?php foreach ($vagas as $v) : ?>
+							<h3 class="box-title" ><?php echo "Total de Vagas: ". $v['vagas'];?></h3>
+						<?php endforeach; ?>
+
+
 					</div>
 					<div class="box-body">
 						<table class="table table-striped table-hover datatable">
@@ -43,13 +50,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 										<td><?php echo htmlspecialchars($i['nome'], ENT_QUOTES, 'UTF-8'); ?></td>
 										<!-- Opções -->
 										<td>
-											<?php echo anchor($anchor . '/edit/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar Escola</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor . '/view/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Dados Escola</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor1 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Servidores</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor2 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Turmas</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor3 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Cardapios</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor4 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Demonstrativo</button>"); ?>&nbsp;&nbsp;
-											<?php echo anchor($anchor5 . '/index/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i> Atendimento</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor . '/view/' . $i['id'],   "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Escola</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor1 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Servidores</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor2 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Turmas</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor3 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Cardapios</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor4 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Demonstrativo</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor5 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Atendimento</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor6 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Hortifruti</button>"); ?>&nbsp;&nbsp;
+											<?php echo anchor($anchor7 . '/index/' . $i['id'], "<button class=\"btn btn-azul btn-responsive\"><i class=\"fa fa-search\"></i>Pedidos</button>"); ?>&nbsp;&nbsp;
 											
 										</td>
 									</tr>

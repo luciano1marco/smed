@@ -10,7 +10,7 @@
         
     }
     #borda{
-        background-color:#98D3DEd7;
+        background-color:#98d3de4b;
         align-items: center;
     }
     #bt:hover{
@@ -26,7 +26,7 @@
 <div id="logar">
     <div class="content">
         <div class="login-logo">
-            <a href="#"><img src="/serzodiaco/public/images/brasao.png" width="15%" height="15%"></a>
+            <a href="#"><img src="/smed/public/images/brasao.png" width="7%" height="7%"></a>
             <span style:>Secretaria Municipal de Educação</span>
         </div>
         

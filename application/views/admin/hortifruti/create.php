@@ -24,7 +24,11 @@
                                         <div class="col-sm-2">
                                             <?php echo form_dropdown($mes); ?>
                                         </div>
-                                </div> 
+                                    <?php echo form_label('Tipo', 'tipo', array('class' => 'col-sm-2 control-label')); ?>
+                                        <div class="col-sm-3">
+                                            <?php echo form_input($tipo); ?>
+                                        </div>    
+                                </div>&nbsp;
                                 <div class="form-group">  
                                     <?php echo form_label('Número Total Alunos', 'nro_alunos', array('class' => 'col-sm-2 control-label')); ?>
                                         <div class="col-sm-1">
@@ -38,7 +42,7 @@
                                         <div class="col-sm-1">
                                             <?php echo form_input($tarde); ?>
                                         </div>
-                                </div> 
+                                </div>&nbsp;
                                 <div class="form-group">  
                                     <?php echo form_label('Qtde Alunos Noite', 'noite', array('class' => 'col-sm-2 control-label')); ?>
                                         <div class="col-sm-1">
@@ -52,9 +56,26 @@
                                         <div class="col-sm-1">
                                             <?php echo form_input($eja); ?>
                                         </div>
-                                </div>
+                                </div>&nbsp;
+                                <div class="form-group">  
+                                    <?php echo form_label('Escolares Atendidos', 'soma_atendidos', array('class' => 'col-sm-2 control-label')); ?>
+                                        <div class="col-sm-1">
+                                            <?php echo form_input($soma_atendidos); ?>
+                                        </div>
+                                    <?php echo form_label('Dias de Distribuição', 'total_dias', array('class' => 'col-sm-2 control-label')); ?>
+                                        <div class="col-sm-1">
+                                            <?php echo form_input($total_dias); ?>
+                                        </div>
+                                    <?php echo form_label('Media de Alunos Atendidos', 'media_alunos', array('class' => 'col-sm-2 control-label')); ?>
+                                        <div class="col-sm-1">
+                                            <?php echo form_input($media_alunos); ?>
+                                        </div>
+                                </div>&nbsp;
                             <?php echo form_fieldset_close(); ?>
                             <!---Fim Campos demonstrativo mensal--->
+                            <h4 style="color:blue">DATA DE ENTREGA: DE 20 A 25 DE CADA MÊS.
+                                O ATRASO NA ENTREGA DESTE DEMONSTRATIVO ACARRETARÁ O NÃO RECEBIMENTO DOS GÊNEROS DO MÊS SUBSEQUENTE.
+                            </h4>&nbsp;
                             <!--campos demonstrativo diario -->
                             <?php echo form_fieldset('Dias'); ?>
                                 <?php $diasdomes = date('t');?>
@@ -68,13 +89,27 @@
                                             </div>
                                             <?php echo'<div id="collapse'.$i.'"class="panel-collapse collapse ">';?>
                                                 <div class="panel-body">
-                                                    <?php echo form_label('Alunos Atendidos', 'alunos_atendidos[]', array('class' => 'col-sm-2 control-label')); ?>
-                                                        <div class="col-sm-2">
-                                                            <?php echo form_input($alunos_atendidos); ?>
+                                                    <?php echo form_label('Genero', 'generos[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                        <div class="col-sm-4">
+                                                            <?php echo form_input($generos); ?>
                                                         </div>
-                                                    <?php echo form_label('Repeticoes', 'repeticoes[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <?php echo form_label('Número da Guia', 'nro_guia[]', array('class' => 'col-sm-2 control-label')); ?>
                                                         <div class="col-sm-1">
-                                                            <?php echo form_input($repeticoes); ?>
+                                                            <?php echo form_input($nro_guia); ?>
+                                                        </div>
+                                                    <?php echo form_label('Entrada', 'entrada[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                        <div class="col-sm-1">
+                                                            <?php echo form_input($entrada); ?>
+                                                        </div>
+                                                    <?php echo form_label('Saída', 'saida[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                        <div class="col-sm-1">
+                                                            <?php echo form_input($saida); ?>
+                                                        </div>
+                                                    <?php echo form_label('Saldo', 'saldo[]', array('class' => 'col-sm-2 control-label')); ?>
+                                                        <div class="col-sm-1">
+                                                            <?php echo form_input($saldo); ?>
                                                         </div>
                                                 </div>
                                             </div>
@@ -83,9 +118,9 @@
                                 </div>       
                                 <!-- Fim campos demonstrativo diario -->
                             <?php echo form_fieldset_close(); ?>
-
+                            
                             <div class="form-group"> 
-                                <div class="col-sm-offset-2 col-sm-10">
+                                <div class="col-sm-offset-4 col-sm-10">
                                     <div class="btn-group">
                                         <?php
                                         $submit = '<i class="fa fa-check"></i> <span>Enviar</span>';

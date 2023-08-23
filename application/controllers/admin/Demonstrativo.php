@@ -65,10 +65,26 @@ class demonstrativo extends Admin_Controller {
         /* Variables */
 		$tables = $this->config->item('tables', 'ion_auth');
         /* Nome do Botão Criar do INDEX */
-        $this->data['texto_create'] = 'Demonstrativo';
+        $this->data['texto_create'] = 'Novo Demonstrativo';
 		/* Validate form input */
 		$this->form_validation->set_rules('tipo', 'tipo', 'required');
-                
+         
+         //definindo valores para nro_alunos, tarde, manha,noite, integral,eja
+         $sql_qde_al    ="SELECT SUM(matriculas) nro_alunos FROM turmas  WHERE  idescola = ".$idescola;
+         $sqlTarde      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 2 and idescola = ".$idescola.") AS tarde      FROM escolas WHERE id =". $idescola;
+         $sqlnoite      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 4 and idescola = ".$idescola.") AS noite      FROM escolas WHERE id =". $idescola;
+         $sqleja        ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 3 and idescola = ".$idescola.") AS eja        FROM escolas WHERE id =". $idescola;
+         $sqlintegral   ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 5 and idescola = ".$idescola.") AS integral   FROM escolas WHERE id =". $idescola;
+         $sqlmanha      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 1 and idescola = ".$idescola.") AS manha      FROM escolas WHERE id =". $idescola;
+ 
+         $nro_alunos = R::getAll($sql_qde_al);        
+         $tarde      = R::getAll($sqlTarde);
+         $noite      = R::getAll($sqlnoite);
+         $eja        = R::getAll($sqleja);
+         $integral   = R::getAll($sqlintegral);
+         $manha      = R::getAll($sqlmanha);
+
+
         /* cria a tabela editais com seus campos */
 		if ($this->form_validation->run()) {
 
@@ -142,43 +158,49 @@ class demonstrativo extends Admin_Controller {
                     'name'  => 'nro_alunos',
                     'id'    => 'nro_alunos',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('nro_alunos'),
+                    'value' => $nro_alunos[0]['nro_alunos'],
                 );
                 $this->data['manha'] = array(
                     'name'  => 'manha',
                     'id'    => 'manha',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('manha'),
+                    'value' => $manha[0]['manha'],
                 );
                 $this->data['tarde'] = array(
                     'name'  => 'tarde',
                     'id'    => 'tarde',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('tarde'),
+                    'value' => $tarde[0]['tarde'],
                 );
                 $this->data['noite'] = array(
                     'name'  => 'noite',
                     'id'    => 'noite',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('noite'),
+                    'value' => $noite[0]['noite'],
                 );
                 $this->data['integral'] = array(
                     'name'  => 'integral',
                     'id'    => 'integral',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('integral'),
+                    'value' => $integral[0]['integral'],
                 );
                 $this->data['eja'] = array(
                     'name'  => 'eja',
                     'id'    => 'eja',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $this->form_validation->set_value('eja'),
+                    'value' => $eja[0]['eja'],
                 );
                 $this->data['tipo'] = array(
                     'name'  => 'tipo',
@@ -408,6 +430,23 @@ class demonstrativo extends Admin_Controller {
         $resp1 = R::getAll($sql);
         $this->data['demodia']= R::getAll($sql);
         
+        //definindo valores para nro_alunos, tarde, manha,noite, integral,eja
+        $sql_qde_al    ="SELECT SUM(matriculas) nro_alunos FROM turmas  WHERE  idescola = ".$resp->idescola;
+        $sqlTarde      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 2 and idescola = ".$resp->idescola.") AS tarde      FROM escolas WHERE id =". $resp->idescola;
+        $sqlnoite      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 4 and idescola = ".$resp->idescola.") AS noite      FROM escolas WHERE id =". $resp->idescola;
+        $sqleja        ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 3 and idescola = ".$resp->idescola.") AS eja        FROM escolas WHERE id =". $resp->idescola;
+        $sqlintegral   ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 5 and idescola = ".$resp->idescola.") AS integral   FROM escolas WHERE id =". $resp->idescola;
+        $sqlmanha      ="SELECT  * ,(SELECT SUM(matriculas) FROM turmas   WHERE idturno = 1 and idescola = ".$resp->idescola.") AS manha      FROM escolas WHERE id =". $resp->idescola;
+
+        $nro_alunos = R::getAll($sql_qde_al);        
+        $tarde      = R::getAll($sqlTarde);
+        $noite      = R::getAll($sqlnoite);
+        $eja        = R::getAll($sqleja);
+        $integral   = R::getAll($sqlintegral);
+        $manha      = R::getAll($sqlmanha);
+        
+       // var_dump($teste[0]['tarde']);die;
+
         if ($this->form_validation->run()) {
 
             $mes = $this->input->post('mes');
@@ -432,6 +471,8 @@ class demonstrativo extends Admin_Controller {
                 $mes1 = explode('-',$resp->mes_ano);
                 $mes = $mes1[1];
                 $ano = $mes1[0];
+                $this->data['ano'] = $ano;
+
                 $this->data['idescola'] = array(
                     'name'  => 'idescola',
                     'id'    => 'idescola',
@@ -451,43 +492,49 @@ class demonstrativo extends Admin_Controller {
                     'name'  => 'nro_alunos',
                     'id'    => 'nro_alunos',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->nro_alunos,
+                    'value' => $nro_alunos[0]['nro_alunos'],
                 );
                 $this->data['manha'] = array(
                     'name'  => 'manha',
                     'id'    => 'manha',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->manha,
+                    'value' => $manha[0]['manha'],
                 );
                 $this->data['tarde'] = array(
                     'name'  => 'tarde',
                     'id'    => 'tarde',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->tarde,
+                    'value' => $tarde[0]['tarde'],
                 );
                 $this->data['noite'] = array(
                     'name'  => 'noite',
                     'id'    => 'noite',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->noite,
+                    'value' => $noite[0]['noite'],
                 );
                 $this->data['integral'] = array(
                     'name'  => 'integral',
                     'id'    => 'integral',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->integral,
+                    'value' => $integral[0]['integral'],
                 );
                 $this->data['eja'] = array(
                     'name'  => 'eja',
                     'id'    => 'eja',
                     'type'  => 'text',
+                    'disabled'    => 'disabled',
                     'class' => 'form-control',
-                    'value' => $resp->eja,
+                    'value' => $eja[0]['eja'],
                 );
                 $this->data['tipo'] = array(
                     'name'  => 'tipo',
@@ -500,7 +547,7 @@ class demonstrativo extends Admin_Controller {
             $ultimo = date('d', mktime(0, 0, 0, $mes+1, 0, $ano ));
             
             $diasdomes = date($mes);//pega numero de dias do mes atual
-
+                
             for($i=0;$i<$diasdomes;$i++){
             //var_dump($resp1[$i]);
            

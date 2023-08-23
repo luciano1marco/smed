@@ -20,12 +20,12 @@
 						</div>
 						<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';?>
 						<?php echo anchor($anchor, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
-                    		 		
-					</div>
+            		</div>
 					<?php foreach ($escolas as $i) : ?>
 						<?php $id1 = $i['id']; ?>
 						<div class="box-header with-border">
-							<!--<h3 class="box-title"><?php echo anchor($anchor . '/create/'. $i['id'], '<i class="fa fa-plus"></i> ' . 'Estrutura', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>&nbsp;&nbsp;--->
+						<?php echo anchor($anchor . '/edit/'  . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i>Editar Escola</button>"); ?>&nbsp;&nbsp;
+						<?php echo anchor($anchor . '/vagas/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i>Vagas da Escola</button>"); ?>&nbsp;&nbsp;
 							<div class="card text-center" >
 								<!--Dados da Escola--->
 								<section class="content">

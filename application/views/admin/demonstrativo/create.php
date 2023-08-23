@@ -16,47 +16,48 @@
                     </div>
                     <div class="box-body">
                         <?php echo $message; ?>
-                        <?php echo form_open(current_url(), array('class' => 'form', 'id' => 'form')); ?>
+                        <?php echo form_open(current_url(), array('class' => 'form-horizontal', 'id' => 'form-edit')); ?>
                             <?php echo form_fieldset('Dados'); ?>
-                            <!--campos demonstrativo mensal -->
+                                <!--campos demonstrativo mensal -->
                                 <div class="form-group">
-                                    <?php echo form_label('Mês', 'mes', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_dropdown($mes); ?>
-                                        </div>
-                                    <?php echo form_label('Tipo', 'tipo', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-6">
-                                            <?php echo form_input($tipo); ?>
-                                        </div>    
-                                </div> 
-                                <div class="form-group">  
-                                    <?php echo form_label('Número Total Alunos', 'nro_alunos', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($nro_alunos); ?>
+                                            <?php echo form_label('Mês', 'mes', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-2">
+                                                    <?php echo form_dropdown($mes); ?>
+                                                </div>
+                                            <?php echo form_label('Tipo', 'tipo', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-3">
+                                                    <?php echo form_input($tipo); ?>
+                                                </div>    
                                         </div> 
-                                    <?php echo form_label('Qtde Alunos Manhã', 'manha', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($manha); ?>
+                                        <div class="form-group">  
+                                            <?php echo form_label('Número Total Alunos', 'nro_alunos', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    <?php echo form_input($nro_alunos); ?>
+                                                </div> 
+                                            <?php echo form_label('Qtde Alunos Manhã', 'manha', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    <?php echo form_input($manha); ?>
+                                                </div>
+                                            <?php echo form_label('Qtde Alunos Tarde', 'Tarde', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    
+                                                    <?php echo form_input($tarde); ?>
+                                                </div>
+                                        </div> 
+                                        <div class="form-group">  
+                                            <?php echo form_label('Qtde Alunos Noite', 'noite', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    <?php echo form_input($noite); ?>
+                                                </div>
+                                            <?php echo form_label('Qtde Alunos Integral', 'integral', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    <?php echo form_input($integral); ?>
+                                                </div>
+                                            <?php echo form_label('Qtde Alunos EJA', 'eja', array('class' => 'col-sm-2 control-label')); ?>
+                                                <div class="col-sm-1">
+                                                    <?php echo form_input($eja); ?>
+                                                </div>
                                         </div>
-                                    <?php echo form_label('Qtde Alunos Tarde', 'Tarde', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($tarde); ?>
-                                        </div>
-                                </div> 
-                                <div class="form-group">  
-                                    <?php echo form_label('Qtde Alunos Noite', 'noite', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($noite); ?>
-                                        </div>
-                                    <?php echo form_label('Qtde Alunos Integral', 'integral', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($integral); ?>
-                                        </div>
-                                    <?php echo form_label('Qtde Alunos EJA', 'eja', array('class' => 'col-sm-2 control-label')); ?>
-                                        <div class="col-sm-2">
-                                            <?php echo form_input($eja); ?>
-                                        </div>
-                                </div>
                             <?php echo form_fieldset_close(); ?>
                             <!---Fim Campos demonstrativo mensal--->
                             <!--campos demonstrativo diario -->

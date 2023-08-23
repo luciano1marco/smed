@@ -11,6 +11,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<?php $anchor = 'admin/' . $this->router->class; ?>
 		<?php $anchor1 = 'admin/escolas'; ?>
 		<?php $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>'; ?>
+		<?php $leg = '<i class="fa fa-search"></i> <span>Legenda</span>'; ?>
 	
 	</section>
 	&nbsp;&nbsp;&nbsp;&nbsp;
@@ -31,10 +32,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="box-header with-border">
 						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Nova Turma', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
-				
-						<h4 style="color:blue">PNESL - Pessoa com Necessidade Educacional Especifica Sem Laudo</h4>		
-						<h4 style="color:blue">PNECL - Pessoa com Necessidade Educacional Especifica Com Laudo</h4>		
+						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo form_button(array('type' => 'button', 'class' => 'btn btn-azul btn-flat', 'content' => $leg, "id" => "btExcluir")); ?>
+								
 					</div>
 
 					<div class="box-body">
@@ -86,3 +86,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		</div>
 	</section>
 </div>
+
+<!----modal Legenda-------->
+<div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title"><b>Legenda:</b></h4>
+            </div>
+
+            <div class="modal-body">
+				<h4 style="color:blue">PNESL - Pessoa com Necessidade Educacional Especifica Sem Laudo</h4>		
+				<h4 style="color:blue">PNECL - Pessoa com Necessidade Educacional Especifica Com Laudo</h4>		
+				<h4 style="color:blue">CF    - Capacidade Fisica</h4>		
+				<h4 style="color:blue">CP    - Capacidade Pedagogica</h4>		
+				<h4 style="color:blue">R     - Regular</h4>		
+				<h4 style="color:blue">M     - Número de Matriculados</h4>		
+				<h4 style="color:blue">Rest  - Matriculas Restantes</h4>	
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
