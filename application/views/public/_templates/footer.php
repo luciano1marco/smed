@@ -32,7 +32,22 @@
 
     <!-- FIX BODY -->
     <script src="<?php echo base_url($public_js . '/fix_body.js'); ?>"></script>
-   
+   <!-- CHARTJS -->
+<?php
+$chartjs_array = array('');
+$include_chartjs = isset($includes['chartjs']) ? $includes['chartjs'] : array();
+?>
+
+<?php if (
+    (in_array($this->router->fetch_class(), $chartjs_array) || in_array($this->router->fetch_class(), $include_chartjs))
+    &&
+    (in_array($this->router->fetch_method(), $methods_array))
+) :
+?>
+
+    <script src="<?php echo base_url($plugins_dir . '/chartjs/Chart.min.js'); ?>"></script>
+
+<?php endif; ?>
     <!--Arquivo JS -->
     <script type="text/javascript" src="<?php echo $arq_js; ?>"></script>	
 

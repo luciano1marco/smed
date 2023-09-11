@@ -25,7 +25,6 @@
 						<?php $id1 = $i['id']; ?>
 						<div class="box-header with-border">
 						<?php echo anchor($anchor . '/edit/'  . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i>Editar Escola</button>"); ?>&nbsp;&nbsp;
-						<?php echo anchor($anchor . '/vagas/' . $i['id'], "<button class=\"btn btn-azul\"><i class=\"fa fa-search\"></i>Vagas da Escola</button>"); ?>&nbsp;&nbsp;
 							<div class="card text-center" >
 								<!--Dados da Escola--->
 								<section class="content">

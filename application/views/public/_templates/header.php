@@ -39,6 +39,21 @@
         <!-- Select 2 -->
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/select2/css/select2.min.css'); ?>"> 
         <link rel="stylesheet" href="<?php echo base_url($frameworks_dir . '/select2-bootstrap4-theme/select2-bootstrap4.min.css'); ?>">
+        <!-- CHARTJS -->
+        <?php
+                $chartjs_array = array('');       
+                $include_chartjs = isset($includes['chartjs']) ? $includes['chartjs'] : array();
+        ?>
+        <?php if (( 
+                in_array($this->router->fetch_class(),$chartjs_array) || in_array($this->router->fetch_class(), $include_chartjs)
+            ) &&  (
+                in_array($this->router->fetch_method(),$methods_array)
+                    )): 
+        ?>
+      
+        <link rel="stylesheet" href="<?php echo base_url($plugins_dir . '/chartjs/Chart.min.css'); ?>">
+               
+        <?php endif; ?>
 
         <!-- /* COISAS DA PAGINA */ -->
 

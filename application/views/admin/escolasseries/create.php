@@ -29,11 +29,19 @@
                             <?php $delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';?>
 
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label" for="serie">Selecione a(s) Serie(s)</label>
-                                    <div class="col-sm-4">
-                                        <select class="selectpicker" id="serie" name="serie[]" multiple searchable="Search here.." />
+                                <label class="col-sm-2 col-form-label text-right" for="series">Áreas de Autação:</label>
+                                    <div class="col-sm-2">
+                                        <select class="selectpicker" id="series" name="series[]" multiple data-live-search="true" />
                                             <option value = <?php echo form_dropdown($serie);?></option>
-                                        </select>  
+                                        </select> 
+                                    </div>
+                                    <div class="col-sm-6">
+                                            <?php
+                                                $submit = '<i class="fa fa-check"></i> <span>Enviar</span>';
+                                                $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';
+                                            ?>
+                                            <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
+                                            <?php echo anchor($anchor1.'/'.$idescola, $cancel, array('class' => 'btn btn-default btn-flat')); ?>
                                     </div>
                                 </div>
                                 <!-- mostra as areas selecionadas --> 
@@ -41,7 +49,7 @@
                                         <?php 
                                         foreach ($escseries as $row){
                                            // var_dump($row);
-                                            echo $row['nome'];
+                                            echo $row['descricao'];
                                             echo anchor($anchor.'/apagarserie/'.$row['id'], $delete, array('class' => 'btn btn-light'));  
 							                echo '</br>';
                                         }
@@ -51,17 +59,7 @@
 
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
-                                        <div class="btn-group">
-                                            <?php
-                                                $submit = '<i class="fa fa-check"></i> <span>Enviar</span>';
-                                                $edit = '<i class="fa fa-edit"></i> <span>Editar</span>';
-                                                $redo = '<i class="fa fa-refresh"></i> <span>Reiniciar</span>';
-                                                $delete = '<i class="fa fa-trash"></i> <span>Excluir</span>';
-                                                $cancel = '<i class="fa fa-times"></i> <span>Cancelar</span>';
-                                            ?>
-                                            <?php echo form_button(array('type' => 'submit', 'class' => 'btn btn-azul btn-flat', 'content' => $submit)); ?>
-                                            <?php echo anchor($anchor1.'/'.$row['id_escola'], $cancel, array('class' => 'btn btn-default btn-flat')); ?>
-                                           </div>
+                                        
                                     </div>
                                 </div>
                             <?php echo form_fieldset_close(); ?>

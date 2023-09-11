@@ -45,14 +45,14 @@ class escolasseries extends Admin_Controller {
         $this->data['idescola'] = $id;
 		/* Validate form input */
         //$this->data['series']= R::findAll('escolasseries');   
-        $sql="SELECT    es.id, es.id_escola,es.id_serie,s.id as serieid,s.nome
+        $sql="SELECT    es.id, es.id_escola,es.id_serie,s.id as serieid,s.descricao
 
                         from escolasseries as es
                     
                         inner join series as s
                         on s.id = es.id_serie  
                 
-                        where es.id_escola =".$id;
+                        where es.id_escola ='$id' order by s.descricao" ;
 
         $this->data['escseries']= R::getAll($sql); 
 
@@ -61,7 +61,7 @@ class escolasseries extends Admin_Controller {
         /* cria a tabela com seus campos */
 		if ($this->form_validation->run()) {
             //var_dump($_POST);
-            $series = $this->input->post('serie'); 
+            $series = $this->input->post('series'); 
             if(isset($series)) {
                 foreach ($series as $row ) {
                    // var_dump($row);
@@ -93,7 +93,7 @@ class escolasseries extends Admin_Controller {
                             'class' => 'form-control',
                             'value' => $this->form_validation->set_value('serie'),
                         );
-
+                       
                        // foreach ($series as $c){                    
                        //     $this->data['nome']['selected'] = $c['nome'];
                        // }
@@ -194,10 +194,10 @@ class escolasseries extends Admin_Controller {
 
         $teste = R::findAll("series");
 		foreach ($teste as $o) {
-			$op[$o->id] = $o->nome;
+			$op[$o->id] = $o->descricao;
 		}
 		return $op;
 	}
     //--
-
+   
 }//fim classe

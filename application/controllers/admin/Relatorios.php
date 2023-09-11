@@ -1,10 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Relatorios extends Admin_Controller {
+class relatorios extends Admin_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
 
         /* Title Page :: Common */
@@ -23,9 +22,7 @@ class Relatorios extends Admin_Controller {
         /* Breadcrumbs :: Common */
         $this->breadcrumbs->unshift(1, 'Questionário', $this->anchor);
     }
-
-	public function index()
-	{
+	public function index(){
         if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
         {
             redirect('auth/login', 'refresh');
@@ -39,7 +36,27 @@ class Relatorios extends Admin_Controller {
             $this->data['error'] = NULL;
 
             $questionarios = R::find( 'questionarios' );
+            //mostra todas escolas
+            $sql = "SELECT  				
+                        s.nome as nome,s.id as id,
+                        SUM(t.capacidade)   as capacidade,
+                        SUM(t.capacidade_p) as capacidade_p,
+                        SUM(t.regular)      as regular,
+                        SUM(t.pnesl)        as pnesl,
+                        SUM(t.pnecl)        as pnecl,
+                        SUM(t.matriculas)   as matriculas,
+                        SUM(t.capacidade_p - t.matriculas)   as restantes
+                    from turmas as t
+                    inner join escolas as s
+                    on s.id = t.idescola
 
+                    group by t.idescola  
+                    ORDER BY `s`.`nome` ASC
+                ";
+
+            $this->data['escolas']= R::getAll($sql); 
+            
+            
             /* Carrega os Tipos de Eventos */
 			$this->data['questionarios'] = $questionarios;
 			
@@ -55,15 +72,87 @@ class Relatorios extends Admin_Controller {
             $this->template->admin_render($this->anchor.'/index', $this->data);
         }
     }
+    public function view($id){
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+        {
+            redirect('auth/login', 'refresh');
+        }
+        else
+        {
+            /* Breadcrumbs */
+            $this->data['breadcrumb'] = $this->breadcrumbs->show();
 
-    public function getrelqdq(){      
-        header('Content-Type: application/json');
+            /* Data */
+            $this->data['error'] = NULL;
+
+            $sqle = "SELECT * from escolas where id = '$id'";
+            $this->data["nomeescola"] = R::getAll($sqle);	
+            //mostra todas escolas - vagas / serie da escola
+            $sql = "SELECT  t.descricao as nome,
+                            t.capacidade,
+                            t.capacidade_p,
+                            t.regular,
+                            t.pnesl,
+                            t.pnecl,
+                            t.matriculas,
+                            tu.descricao as turno
+                    FROM `turmas` as t
+            
+                    inner join escolas as e
+                    on e.id = t.idescola
                     
-        $sql = "SELECT q.data AS dt,count(q.id) AS id 
-                FROM questionarios AS q
-                GROUP BY dt
-               ";        
+                    inner join turnos as tu
+                    on t.idturno = tu.id
+                    
+                    where t.idescola = '$id'  
+                    ORDER BY `t`.`descricao` ASC" ;
+            $this->data['porescolas']= R::getAll($sql); 
+           
+            /* Carrega os Tipos de Eventos */
+			$this->data['id_check'] = array(
+				'name'          => 'id',
+				'id'            => 'id_check[]',
+				'value'         => null,
+				'checked'       => FALSE,
+				'style'         => 'margin:10px'
+			);
+						
+			/* Load Template */		
+            $this->template->admin_render($this->anchor.'/view', $this->data);
+        }
+    }
+    public function relat($id){
+        if ( ! $this->ion_auth->logged_in() OR ! $this->ion_auth->is_admin())
+            {   redirect('auth/login', 'refresh'); }
+        else
+            { /* Breadcrumbs */
+                $this->data['breadcrumb'] = $this->breadcrumbs->show();
+                /* Data */
+                $this->data['error'] = NULL;
+                //mostra todas escolas
+                $sqle = "SELECT * from escolas where id = '$id'";
+                $this->data["escolas"] = R::getAll($sqle);	
+                /* Load Template */
+                $this->template->admin_render('admin/relatorios/relat', $this->data);
+            }
 
+    }
+    
+    public function gettotal($id){ 
+         var_dump($id);die;
+        header('Content-Type: application/json');
+        $sql="SELECT 
+                    SUM(capacidade) AS capacidade,
+                    SUM(capacidade_p) AS capacidade_p,				
+                    SUM(regular) AS regular,
+                    SUM(pnesl) AS pnesl,
+                    SUM(pnecl) AS pnecl,				
+                    SUM(matriculas) AS matriculas,
+                    SUM(capacidade_p - turmas.matriculas) AS restante
+                FROM turmas
+                WHERE idescola =" .$id
+                ;
+    
         $rows = R::getAll($sql);
 
         $relatorio = $rows;       
@@ -72,16 +161,21 @@ class Relatorios extends Admin_Controller {
 			$j = json_encode($relatorio);
 			echo $j;			
         } 
-      
     }
-
-    public function getrelqtotal(){      
+    public function getserie($id){      
         header('Content-Type: application/json');
-                    
-        $sql = "SELECT COUNT(q.id) AS total 
-                FROM questionarios AS q
-                 ";        
-
+        $sql="SELECT *, s.descricao as nomeserie, 
+                        t.descricao as nometurno,
+                        (tu.capacidade_p - tu.matriculas) as restante
+                from turmas as tu
+        
+                inner join series as s
+                on tu.idserie = s.id
+                
+                inner join turnos as t
+                on tu.idturno = t.id 
+        
+                where tu.idescola = '$id' order by nomeserie";
         $rows = R::getAll($sql);
 
         $relatorio = $rows;       
@@ -90,238 +184,7 @@ class Relatorios extends Admin_Controller {
 			$j = json_encode($relatorio);
 			echo $j;			
         } 
-      
     }
-
-    public function getrelestudante(){      
-        header('Content-Type: application/json');
-                    
-        $sql = "SELECT SUM(q.especial) AS qespecial, SUM(q.qts_est) AS qestudantes FROM questionarios AS q";        
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        } 
-      
-    }
-
-    public function getrelespecial(){      
-        header('Content-Type: application/json');
-                    
-        $sql = "SELECT SUM(q.especial) AS qespecial, SUM(q.qts_est) AS qestudantes FROM questionarios AS q";        
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        } 
-      
-    }
-
-    public function getrelrisco(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT COUNT(q.id) AS total,SUM(q.derisco) AS qtd from questionarios AS q";
-       
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelretorno(){      
-        header('Content-Type: application/json');
-                    
-       $sql="SELECT COUNT(qv.ordem) AS ordem,v.descricao  from qvoltar as qv 
-               inner join voltar as v 
-               on qv.id_voltar = v.id
-      
-               where ordem = 1 GROUP BY id_voltar ORDER BY ordem DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelretorno2(){      
-        header('Content-Type: application/json');
-                    
-        //$sql="SELECT COUNT(q.id) AS total,SUM(q.derisco) AS qtd from questionarios AS q";
-       // $sql="SELECT COUNT(ordem) as ordem, COUNT(id_voltar) AS qtd from qvoltar where ordem = '1'";
-       $sql="SELECT COUNT(qv.ordem) AS ordem,v.descricao  from qvoltar as qv 
-               inner join voltar as v 
-               on qv.id_voltar = v.id
-      
-               where ordem = 2 GROUP BY id_voltar ORDER BY ordem DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelretorno3(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT COUNT(qv.ordem) AS ordem,v.descricao  from qvoltar as qv 
-               inner join voltar as v 
-               on qv.id_voltar = v.id
-      
-               where ordem = 3 GROUP BY id_voltar ORDER BY ordem DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelpresencial(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT COUNT(qn.id_npresencial) AS presencial,n.descricao 
-         from qnpresencial as qn 
-        inner join npresencial as n 
-        on qn.id_npresencial = n.id
-
-        GROUP BY id_npresencial ORDER BY presencial DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getreltrabalho(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT q.qtdpresencial AS descricao, COUNT(q.tempresencial) AS qtd
-              from questionarios as q 
-              where tempresencial = 1
-              GROUP BY descricao
-              ORDER BY qtd DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-
-    public function getreltrabalho1(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT SUM(q.tempresencial) AS tem, COUNT(q.id) AS qtd
-              from questionarios as q 
-              ";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelacesso(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT q.qtdacesso AS descricao, COUNT(q.temacesso) AS qtd 
-              from questionarios as q 
-              where temacesso = 1
-              GROUP BY descricao
-              ORDER BY qtd DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelacesso1(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT q.qualacesso AS descricao, COUNT(q.temacesso) AS qtd 
-              from questionarios as q 
-              where temacesso = 1
-              GROUP BY descricao
-              ORDER BY qtd DESC";
-       
-
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
-    public function getrelaparelho(){      
-        header('Content-Type: application/json');
-                    
-        $sql="SELECT COUNT(qa.id_aparelho) AS ordem,a.descricao
-              from qaparelho as qa 
-               inner join aparelhos as a 
-               on qa.id_aparelho = a.id
-      
-               GROUP BY id_aparelho ORDER BY ordem DESC";
- 
-        $rows = R::getAll($sql);
-
-        $relatorio = $rows;       
-        
-        if($relatorio !== NULL) {		
-			$j = json_encode($relatorio);
-			echo $j;			
-        }       
-    }
-
     //---fim dos getrel...()-------------
  
 }
