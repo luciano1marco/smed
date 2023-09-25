@@ -33,12 +33,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<h3 class="box-title"><?php echo anchor($anchor . '/create/'.$e['id'], '<i class="fa fa-plus"></i> ' . 'Nova Turma', array('class' => 'btn btn-block btn-azul btn-flat')); ?></h3>
 						&nbsp;&nbsp;&nbsp;&nbsp;
 						<?php echo anchor($anchor1, $cancel, array('class' => 'btn btn-default btn-flat')); ?>&nbsp;&nbsp;&nbsp;&nbsp;
-						<?php echo form_button(array('type' => 'button', 'class' => 'btn btn-azul btn-flat', 'content' => $leg, "id" => "btExcluir")); ?>
-								
+						<?php echo form_button(array('type' => 'button', 'class' => 'btn btn-azul btn-flat', 'content' => $leg, "id" => "btExcluir")); ?>&nbsp;&nbsp;&nbsp;&nbsp;
+						<?php echo anchor($anchor . '/imprimirturmas/'.$e['id'] , "<button class=\"btn btn-azul\"><i class=\"fa fa-print\"></i>Gera pdf</button>"); ?>
 					</div>
-
 					<div class="box-body">
-						
 						<table class="table table-striped table-hover datatable">
 							<thead>
 								<tr>
@@ -69,23 +67,22 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									<td><?php echo htmlspecialchars($i['matriculas'], ENT_QUOTES, 'UTF-8'); ?></td>
 									<td><?php echo intval($i['capacidade_p']) - intval($i['matriculas'])  ; ?></td>
 									<td><?php echo htmlspecialchars($i['descturno'], ENT_QUOTES, 'UTF-8'); ?></td>
-									<td><?php echo htmlspecialchars($i['dt_cad'], ENT_QUOTES, 'UTF-8'); ?></td>
+									<td><?php echo	$data = implode("/",array_reverse(explode("-",$i['dt_cad'])));?></td>
 									<!-- Opções -->
 										<td>
 											<?php echo anchor($anchor . '/edit/' . $i['idturma'].'/'.$i['idescola'], "<button class=\"btn btn-azul\"><i class=\"fa fa-pencil\"></i> Editar</button>"); ?>
 										</td>
-
 									</tr>
 								<?php endforeach; ?>
 							</tbody>
 						</table>
-
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 </div>
+
 
 <!----modal Legenda-------->
 <div id="modal_delete" class="modal fade" tabindex="-1" role="dialog">

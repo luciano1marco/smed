@@ -16,6 +16,8 @@ class turmas extends Admin_Controller {
 		/* FA Icons */
 		//$this->fa_icons = getFontAwesomeIcons();
 
+        $this->load->library('geradoc');
+
         /* Anchor */
 		$this->anchor = 'admin/'.$this->router->class;
       
@@ -340,5 +342,173 @@ class turmas extends Admin_Controller {
 		return $op;
 	}
 
+    public function imprimirturmas($id) {
+        $sqlescola = "SELECT * from escolas where id = ".$id;
+        $escolas= R::getAll($sqlescola); 
+        
+        $sqltotal = "SELECT   SUM(t.capacidade)   as tcapacidade,
+                                        SUM(t.capacidade_p) as tcapacidade_p,
+                                        SUM(t.regular)      as tregular,
+                                        SUM(t.pnesl)        as tpnesl,
+                                        SUM(t.pnecl)        as tpnecl,
+                                        SUM(t.matriculas)   as tmatriculas,
+                                        SUM(t.capacidade_p - t.matriculas)   as trestantes
+        
+                            from turmas as t
+                            where t.idescola = ".$id;
 
-}//fim classe
+        $turmatotal = R::getAll($sqltotal); 
+        
+        $sql ="SELECT   t.id as idturma,t.descricao as descturma,t.capacidade,t.capacidade_p,
+                        t.regular,t.pnesl,t.pnecl,t.matriculas,t.idserie,
+                        t.dt_cad,t.user_cad,tu.id,t.idescola,
+                        tu.descricao as descturno,
+                        u.username as usuario
+                from turmas as t
+
+                inner join turnos as tu
+                on tu.id = t.idturno
+
+                inner join users as u
+                on u.id = t.user_cad
+
+                where t.idescola  = '$id'
+                ORDER BY `descturma` ASC;";
+        
+        $turmas= R::getAll($sql);   
+        //var_dump($turmas);die;
+        $cont = count($turmas) ;
+        //var_dump($escolas[0]['nome']);die;
+        //$img_path = 'http://localhost/smed/public/images/brasao.jpg'; // converte a imagem em base64 
+        //$img_data = base64_encode(file_get_contents($img_path)); 
+
+        $html = '
+        <html>    
+            <head>
+                <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+                <title>SMEd</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                <style>
+                    *{font-family:Times New Roman, Tinos, serif;}
+                    @import url("https://fonts.googleapis.com/css2?family=Tinos&display=swap");
+                    @page { 
+                        margin: 15px; 
+                        padding: 15px; }
+                    body { 
+                        margin: 1px; 
+                    }
+                   
+                    h1,h2,h3,h4{
+                        text-align:center;
+                    }
+                    h5{
+                        text-align:right;
+                    }	
+                    td, th {
+                        border: 1px solid #ccc;
+                         background-color: #EEE;
+                      }
+                    table{
+                        width: 100%;
+                        margin-bottom : .3em;
+                        text-align: left;
+                        border: 5px solid #ccc;
+                      }
+                    #legendas{
+                        width: 100%;
+                        margin-bottom : .1em;
+                        text-align: left;
+                        border: 0px solid #ccc;
+                      }  
+                                       
+                </style>										
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+            </head>
+            <body lang="pt-BR" class="container">';
+            
+        //$Imagen = "C:\\xampp\\htdocs\\smed\\public\\images\\brasao.png";
+       // $html .= '<img src="' . $Imagen . ' height="10%" width="10%">';
+            
+            $html .= '<div title="header" class="text-center content">
+                        <h3 class="top-header-principal">PREFEITURA MUNICIPAL DO RIO GRANDE</h3>
+                        <h3 class="top-header-secundario">Secretaria de Município da Educação - SMEd</h3>
+                </div>	
+                <h3 >Relatório Vagas / Escola / Série</h3>											
+                <h2 >ESCOLA '.$escolas[0]['nome'].'</h2>
+                <h5>'.$turmas[0]['usuario'].'-'.date('d/m/Y h:i').'</h5>
+                  
+                <table class="table" >
+                    <thead>
+                        <tr>
+                            <th>Turmas       </th>
+                            <th>CF          </th>
+                            <th>CP          </th>
+                            <th>R           </th>
+                            <th>PNESL       </th>
+                            <th>PNECL       </th>
+                            <th>M           </th>
+                            <th>Rest        </th>
+                            <th>Turno       </th>
+                            <th>Data        </th>
+
+                        </tr>
+                       
+                    </thead>
+                    <tbody>';
+                        for($i=0;$i<$cont;$i++) { 
+                            $html .=
+                            '<tr>
+                                <td>'.$turmas[$i]['descturma'].   '</td>
+                                <td>'.$turmas[$i]['capacidade'].  '</td>
+                                <td>'.$turmas[$i]['capacidade_p'].'</td>
+                                <td>'.$turmas[$i]['regular'].     '</td>
+                                <td>'.$turmas[$i]['pnesl'].       '</td>
+                                <td>'.$turmas[$i]['pnecl'].       '</td>
+                                <td>'.$turmas[$i]['matriculas'].  '</td>
+                                <td>'.$turmas[$i]['capacidade_p'] - $turmas[$i]['matriculas'].'</td>
+                                <td>'.$turmas[$i]['descturno'].   '</td>
+                                <td>';
+                            $html.= $data = implode("/",array_reverse(explode("-",$turmas[$i]['dt_cad'])));
+                         $html.= '</td></tr>';
+                        }; 
+                        
+                    $html .= '<tr><th>Total</th>
+                                
+                                <td>'.$turmatotal[0]['tcapacidade'].   '</td>
+                                <td>'.$turmatotal[0]['tcapacidade_p']. '</td>
+                                <td>'.$turmatotal[0]['tregular'].      '</td>
+                                <td>'.$turmatotal[0]['tpnesl'].        '</td>
+                                <td>'.$turmatotal[0]['tpnecl'].        '</td>
+                                <td>'.$turmatotal[0]['tmatriculas'].   '</td>
+                                <td>'.$turmatotal[0]['trestantes'].    '</td>
+                                <td>  ------                            </td>
+                                <td>  ------                            </td>
+                                
+                            </tr>
+                    </tbody>
+                </table>
+                <div>
+                    <table id="legendas">
+                        <h4>Legendas</h4>    
+                        <thead>
+                            <tr><th>CF    - Capacidade Física</th></tr>
+                            <tr><th>CP    - Capacidade Pedagógica</th></tr>
+                            <tr><th>R     - Regular</th></tr>
+                            <tr><th>PNESL - Pessoa com Necessidade Educacional Especifica Sem Laudo</th></tr>
+                            <tr><th>PNECL - Pessoa com Necessidade Educacional Especifica Com Laudo</th></tr>
+                            <tr><th>M     - Número de Matriculados</th></tr>
+                            <tr><th>Rest  - Matriculas Restantes</th></tr>
+                            <tr><th>Data  - Data de Cadastro</th></tr>
+                            
+                        </thead>    
+                    </table>   
+                </div>
+                <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+                <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>							
+            </body>
+        </html>';
+     
+    $this->geradoc->imprimeturmas($html,$id);
+    }
+}//fim classe?>
